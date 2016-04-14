@@ -164,7 +164,7 @@ extension SearchCharacterViewController: UITableViewDataSource {
             loadMoreCharacters()
         }
         
-        let cellIdentifier = NibTableViewCell.reuseIdentifierFor(.CharacterSearchCell)
+        let cellIdentifier = NibObjects.reuseIdentifierFor(.CharacterSearchCell)
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! CharacterMainTableViewCell
         
         cell.configWithChar(characters[indexPath.row])

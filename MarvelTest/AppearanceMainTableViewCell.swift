@@ -8,9 +8,17 @@
 
 import UIKit
 
+protocol AppearanceCellDelegate: class {
+    
+    func collectionCellSelected(indexPath: NSIndexPath) -> Void
+    
+}
+
 class AppearanceMainTableViewCell: UITableViewCell {
 
     // MARK: Properties
+    
+    weak var delegate:AppearanceCellDelegate?
     
     var comics = [Appearance]()
     @IBOutlet var collectionView: UICollectionView!
@@ -24,10 +32,18 @@ extension AppearanceMainTableViewCell: UICollectionViewDataSource {
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("AppearanceMainCollectionCellIdentifier", forIndexPath: indexPath) as! AppearanceMainCollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(NibObjects.reuseIdentifierFor(.AppearanceMainCollectionCell), forIndexPath: indexPath) as! AppearanceMainCollectionViewCell
         cell.configWithComic(comics[indexPath.row])
         
         return cell
+    }
+    
+}
+
+extension AppearanceMainTableViewCell: UICollectionViewDelegate {
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        delegate?.collectionCellSelected(indexPath)
     }
     
 }

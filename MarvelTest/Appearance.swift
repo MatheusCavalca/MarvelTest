@@ -14,15 +14,25 @@ class Appearance {
     
     var appearanceId: Int
     var title: String
-    var thumbnail: String
+    var thumbnailPath: String
     var thumbnailLoaded: UIImage?
+    var imagesPathes: [String]?
+    var imagesLoaded: [String]?
     
     init(dict: [String: AnyObject]) {
         appearanceId = dict["id"] as! Int
         title = dict["title"] as! String
         
         let thumbDict = dict["thumbnail"] as! [String: String]
-        thumbnail = thumbDict["path"]! + "." + thumbDict["extension"]!
+        thumbnailPath = thumbDict["path"]! + "." + thumbDict["extension"]!
+        
+        if let imagesArray = dict["images"] as? [[String: String]] {
+            imagesPathes = [String]()
+            for imageDict in imagesArray {
+                let imagePath = imageDict["path"]! + "." + imageDict["extension"]!
+                imagesPathes?.append(imagePath)
+            }
+        }
     }
     
     // MARK: - Thumbnail Handlers
@@ -31,7 +41,7 @@ class Appearance {
         if let thumbnailLoadedUnw = thumbnailLoaded {
             completion(thumbnail: thumbnailLoadedUnw, appearance: self)
         } else {
-            getDataFromUrl(NSURL(string: thumbnail)!, completion: { (data, response, error) in
+            getDataFromUrl(NSURL(string: thumbnailPath)!, completion: { (data, response, error) in
                 if let dataUnw = data {
                     self.thumbnailLoaded = UIImage(data: dataUnw)
                     completion(thumbnail: self.thumbnailLoaded, appearance: self)
@@ -47,4 +57,5 @@ class Appearance {
             completion(data: data, response: response, error: error)
             }.resume()
     }
+    
 }

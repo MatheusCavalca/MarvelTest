@@ -1,5 +1,5 @@
 //
-//  NibTableViewCells.swift
+//  NibObjects.swift
 //  MarvelTest
 //
 //  Created by Matheus Cavalca on 4/12/16.
@@ -8,17 +8,21 @@
 
 import Foundation
 
-enum NibTableViewCell: String {
+enum NibObjects: String {
     
     case CharacterMainCell,
         CharacterSearchCell,
-        ComicMainCell
+        ComicMainCell,
+        AppearanceMainCollectionCell,
+        CoverView
     
-    static func reuseIdentifierFor(nibTableViewCell: NibTableViewCell) -> String {
+    static func reuseIdentifierFor(nibTableViewCell: NibObjects) -> String {
         switch nibTableViewCell {
         case .CharacterMainCell: return "CharacterMainCellIdentifier"
         case .CharacterSearchCell: return "CharacterSearchCellIdentifier"
         case .ComicMainCell: return "AppearanceMainCellIdentifier"
+        case .AppearanceMainCollectionCell: return "AppearanceMainCollectionCellIdentifier"
+        case .CoverView: return "CoverView"
         }
     }
     

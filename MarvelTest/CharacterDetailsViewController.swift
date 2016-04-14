@@ -49,11 +49,22 @@ class CharacterDetailsViewController: UIViewController {
     }
     
     // MARK: - Action
+    
     @IBAction func cancelDismiss(sender: AnyObject) {
         if let navController = navigationController {
             navController.popViewControllerAnimated(true)
         } else {
             dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "segueCover" {
+            let indexPath = sender as! NSIndexPath
+            let destinationViewController = segue.destinationViewController as! CoverViewController
+            destinationViewController.apperance = comics[indexPath.row]
         }
     }
     
@@ -74,10 +85,11 @@ extension CharacterDetailsViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cellIdentifier = NibTableViewCell.reuseIdentifierFor(.ComicMainCell)
+        let cellIdentifier = NibObjects.reuseIdentifierFor(.ComicMainCell)
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AppearanceMainTableViewCell
         
         cell.comics = comics
+        cell.delegate = self
         
         return cell
     }
@@ -88,6 +100,14 @@ extension CharacterDetailsViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
+    }
+    
+}
+
+extension CharacterDetailsViewController: AppearanceCellDelegate {
+    
+    func collectionCellSelected(indexPath: NSIndexPath) {
+        performSegueWithIdentifier("segueCover", sender: indexPath)
     }
     
 }

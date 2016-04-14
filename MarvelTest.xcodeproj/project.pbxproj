@@ -21,7 +21,16 @@
 		388A64A11CBD23C8007E20DD /* MarvelTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388A64A01CBD23C8007E20DD /* MarvelTestUITests.swift */; };
 		38A3A0671CBD311700224AA9 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3A0661CBD311700224AA9 /* Character.swift */; };
 		38A3A06C1CBD3B1F00224AA9 /* CharacterMainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3A06B1CBD3B1F00224AA9 /* CharacterMainTableViewCell.swift */; };
-		38A3A06E1CBD3CE600224AA9 /* NibTableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3A06D1CBD3CE600224AA9 /* NibTableViewCells.swift */; };
+		38A3A06E1CBD3CE600224AA9 /* NibObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3A06D1CBD3CE600224AA9 /* NibObjects.swift */; };
+		38D0E7AB1CBEE9EF009BF5C4 /* CoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D0E7AA1CBEE9EF009BF5C4 /* CoverViewController.swift */; };
+		38D0E7AE1CBEEAD7009BF5C4 /* CoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38D0E7AD1CBEEAD7009BF5C4 /* CoverView.xib */; };
+		38D0E7B01CBEEB03009BF5C4 /* CoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D0E7AF1CBEEB03009BF5C4 /* CoverView.swift */; };
+		38D0E7B41CBEEFD9009BF5C4 /* CoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D0E7AA1CBEE9EF009BF5C4 /* CoverViewController.swift */; };
+		38D0E7B51CBEEFD9009BF5C4 /* CoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D0E7AA1CBEE9EF009BF5C4 /* CoverViewController.swift */; };
+		38D0E7B61CBEF21F009BF5C4 /* CoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D0E7AF1CBEEB03009BF5C4 /* CoverView.swift */; };
+		38D0E7B71CBEF220009BF5C4 /* CoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D0E7AF1CBEEB03009BF5C4 /* CoverView.swift */; };
+		38D0E7B81CBEF224009BF5C4 /* CoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38D0E7AD1CBEEAD7009BF5C4 /* CoverView.xib */; };
+		38D0E7B91CBEF225009BF5C4 /* CoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38D0E7AD1CBEEAD7009BF5C4 /* CoverView.xib */; };
 		38E20D6D1CBD24340023AA4C /* bridging.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E20D6C1CBD24340023AA4C /* bridging.m */; };
 		38E20D6E1CBD24340023AA4C /* bridging.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E20D6C1CBD24340023AA4C /* bridging.m */; };
 		38E20D6F1CBD24340023AA4C /* bridging.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E20D6C1CBD24340023AA4C /* bridging.m */; };
@@ -35,8 +44,8 @@
 		38EFD00C1CBEAA8E00342A34 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3838B2C81CBEA1F800269E97 /* Appearance.swift */; };
 		38EFD00D1CBEAA9100342A34 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3A0661CBD311700224AA9 /* Character.swift */; };
 		38EFD00E1CBEAA9100342A34 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3A0661CBD311700224AA9 /* Character.swift */; };
-		38EFD00F1CBEAA9500342A34 /* NibTableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3A06D1CBD3CE600224AA9 /* NibTableViewCells.swift */; };
-		38EFD0101CBEAA9600342A34 /* NibTableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3A06D1CBD3CE600224AA9 /* NibTableViewCells.swift */; };
+		38EFD00F1CBEAA9500342A34 /* NibObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3A06D1CBD3CE600224AA9 /* NibObjects.swift */; };
+		38EFD0101CBEAA9600342A34 /* NibObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3A06D1CBD3CE600224AA9 /* NibObjects.swift */; };
 		38EFD0111CBEAA9C00342A34 /* CharacterMainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3A06B1CBD3B1F00224AA9 /* CharacterMainTableViewCell.swift */; };
 		38EFD0121CBEAA9D00342A34 /* CharacterMainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3A06B1CBD3B1F00224AA9 /* CharacterMainTableViewCell.swift */; };
 		38EFD0131CBEAAA000342A34 /* AppearanceMainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3838B2C61CBEA15C00269E97 /* AppearanceMainCollectionViewCell.swift */; };
@@ -91,7 +100,10 @@
 		388A64A21CBD23C8007E20DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38A3A0661CBD311700224AA9 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		38A3A06B1CBD3B1F00224AA9 /* CharacterMainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterMainTableViewCell.swift; sourceTree = "<group>"; };
-		38A3A06D1CBD3CE600224AA9 /* NibTableViewCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibTableViewCells.swift; sourceTree = "<group>"; };
+		38A3A06D1CBD3CE600224AA9 /* NibObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibObjects.swift; sourceTree = "<group>"; };
+		38D0E7AA1CBEE9EF009BF5C4 /* CoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoverViewController.swift; sourceTree = "<group>"; };
+		38D0E7AD1CBEEAD7009BF5C4 /* CoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoverView.xib; sourceTree = "<group>"; };
+		38D0E7AF1CBEEB03009BF5C4 /* CoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoverView.swift; sourceTree = "<group>"; };
 		38E20D691CBD24330023AA4C /* MarvelTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MarvelTest-Bridging-Header.h"; sourceTree = "<group>"; };
 		38E20D6A1CBD24330023AA4C /* MarvelTestTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MarvelTestTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		38E20D6B1CBD24330023AA4C /* MarvelTestUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MarvelTestUITests-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -201,10 +213,9 @@
 		38A3A0681CBD397900224AA9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				38E20D711CBD24950023AA4C /* MarvelAPIManager.swift */,
-				38A3A06D1CBD3CE600224AA9 /* NibTableViewCells.swift */,
-				38A3A0661CBD311700224AA9 /* Character.swift */,
-				3838B2C81CBEA1F800269E97 /* Appearance.swift */,
+				38D0E7B21CBEEB89009BF5C4 /* Data Objects */,
+				38D0E7B31CBEEB94009BF5C4 /* Helpers */,
+				38D0E7B11CBEEB84009BF5C4 /* Managers */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -212,6 +223,7 @@
 		38A3A0691CBD397D00224AA9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				38D0E7AC1CBEEAC2009BF5C4 /* Views */,
 				3838B2C51CBEA12400269E97 /* CollectionViewCells */,
 				3838B2C41CBEA11B00269E97 /* TableViewCells */,
 				388A64841CBD23C8007E20DD /* Main.storyboard */,
@@ -225,8 +237,43 @@
 				388A64821CBD23C8007E20DD /* CharactersListViewController.swift */,
 				381044331CBD579E005473D1 /* SearchCharacterViewController.swift */,
 				3862A7621CBDC670009BFEAA /* CharacterDetailsViewController.swift */,
+				38D0E7AA1CBEE9EF009BF5C4 /* CoverViewController.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		38D0E7AC1CBEEAC2009BF5C4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				38D0E7AD1CBEEAD7009BF5C4 /* CoverView.xib */,
+				38D0E7AF1CBEEB03009BF5C4 /* CoverView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		38D0E7B11CBEEB84009BF5C4 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				38E20D711CBD24950023AA4C /* MarvelAPIManager.swift */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		38D0E7B21CBEEB89009BF5C4 /* Data Objects */ = {
+			isa = PBXGroup;
+			children = (
+				38A3A0661CBD311700224AA9 /* Character.swift */,
+				3838B2C81CBEA1F800269E97 /* Appearance.swift */,
+			);
+			name = "Data Objects";
+			sourceTree = "<group>";
+		};
+		38D0E7B31CBEEB94009BF5C4 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				38A3A06D1CBD3CE600224AA9 /* NibObjects.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		38E20D701CBD247A0023AA4C /* Supporting Files */ = {
@@ -380,6 +427,7 @@
 				388A648B1CBD23C8007E20DD /* LaunchScreen.storyboard in Resources */,
 				388A64881CBD23C8007E20DD /* Assets.xcassets in Resources */,
 				38E20D771CBD251B0023AA4C /* URLs.plist in Resources */,
+				38D0E7AE1CBEEAD7009BF5C4 /* CoverView.xib in Resources */,
 				388A64861CBD23C8007E20DD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,6 +438,7 @@
 			files = (
 				38E20D781CBD251B0023AA4C /* URLs.plist in Resources */,
 				38EFD01B1CBEAAAC00342A34 /* Main.storyboard in Resources */,
+				38D0E7B81CBEF224009BF5C4 /* CoverView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +448,7 @@
 			files = (
 				38E20D791CBD251B0023AA4C /* URLs.plist in Resources */,
 				38EFD01C1CBEAAB100342A34 /* Main.storyboard in Resources */,
+				38D0E7B91CBEF225009BF5C4 /* CoverView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,14 +510,16 @@
 				381044341CBD579E005473D1 /* SearchCharacterViewController.swift in Sources */,
 				38A3A06C1CBD3B1F00224AA9 /* CharacterMainTableViewCell.swift in Sources */,
 				38E20D6D1CBD24340023AA4C /* bridging.m in Sources */,
-				38A3A06E1CBD3CE600224AA9 /* NibTableViewCells.swift in Sources */,
+				38A3A06E1CBD3CE600224AA9 /* NibObjects.swift in Sources */,
 				38E20D721CBD24950023AA4C /* MarvelAPIManager.swift in Sources */,
 				38A3A0671CBD311700224AA9 /* Character.swift in Sources */,
 				388A64831CBD23C8007E20DD /* CharactersListViewController.swift in Sources */,
 				3838B2C91CBEA1F800269E97 /* Appearance.swift in Sources */,
+				38D0E7B01CBEEB03009BF5C4 /* CoverView.swift in Sources */,
 				388A64811CBD23C8007E20DD /* AppDelegate.swift in Sources */,
 				3862A7631CBDC670009BFEAA /* CharacterDetailsViewController.swift in Sources */,
 				38EFD01E1CBEABF400342A34 /* AppearanceMainTableViewCell.swift in Sources */,
+				38D0E7AB1CBEE9EF009BF5C4 /* CoverViewController.swift in Sources */,
 				3838B2C71CBEA15C00269E97 /* AppearanceMainCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -479,14 +531,16 @@
 				38EFD0191CBEAAA900342A34 /* CharactersListViewController.swift in Sources */,
 				388A64961CBD23C8007E20DD /* MarvelTestTests.swift in Sources */,
 				38EFD0131CBEAAA000342A34 /* AppearanceMainCollectionViewCell.swift in Sources */,
-				38EFD00F1CBEAA9500342A34 /* NibTableViewCells.swift in Sources */,
+				38EFD00F1CBEAA9500342A34 /* NibObjects.swift in Sources */,
 				38EFD00B1CBEAA8D00342A34 /* Appearance.swift in Sources */,
 				38EFD00D1CBEAA9100342A34 /* Character.swift in Sources */,
 				38E20D731CBD24950023AA4C /* MarvelAPIManager.swift in Sources */,
 				38E20D6E1CBD24340023AA4C /* bridging.m in Sources */,
+				38D0E7B61CBEF21F009BF5C4 /* CoverView.swift in Sources */,
 				38EFD0111CBEAA9C00342A34 /* CharacterMainTableViewCell.swift in Sources */,
 				38EFD0171CBEAAA600342A34 /* SearchCharacterViewController.swift in Sources */,
 				38EFD01F1CBEADCF00342A34 /* AppearanceMainTableViewCell.swift in Sources */,
+				38D0E7B41CBEEFD9009BF5C4 /* CoverViewController.swift in Sources */,
 				38EFD0151CBEAAA300342A34 /* CharacterDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,14 +552,16 @@
 				38EFD01A1CBEAAA900342A34 /* CharactersListViewController.swift in Sources */,
 				388A64A11CBD23C8007E20DD /* MarvelTestUITests.swift in Sources */,
 				38EFD0141CBEAAA100342A34 /* AppearanceMainCollectionViewCell.swift in Sources */,
-				38EFD0101CBEAA9600342A34 /* NibTableViewCells.swift in Sources */,
+				38EFD0101CBEAA9600342A34 /* NibObjects.swift in Sources */,
 				38EFD00C1CBEAA8E00342A34 /* Appearance.swift in Sources */,
 				38EFD00E1CBEAA9100342A34 /* Character.swift in Sources */,
 				38E20D741CBD24950023AA4C /* MarvelAPIManager.swift in Sources */,
 				38E20D6F1CBD24340023AA4C /* bridging.m in Sources */,
+				38D0E7B71CBEF220009BF5C4 /* CoverView.swift in Sources */,
 				38EFD0121CBEAA9D00342A34 /* CharacterMainTableViewCell.swift in Sources */,
 				38EFD0181CBEAAA700342A34 /* SearchCharacterViewController.swift in Sources */,
 				38EFD0201CBEADD000342A34 /* AppearanceMainTableViewCell.swift in Sources */,
+				38D0E7B51CBEEFD9009BF5C4 /* CoverViewController.swift in Sources */,
 				38EFD0161CBEAAA400342A34 /* CharacterDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

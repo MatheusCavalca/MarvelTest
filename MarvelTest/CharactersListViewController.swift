@@ -141,7 +141,7 @@ extension CharactersListViewController: UITableViewDataSource {
             loadMoreCharacters()
         }
         
-        let cellIdentifier = NibTableViewCell.reuseIdentifierFor(.CharacterMainCell)
+        let cellIdentifier = NibObjects.reuseIdentifierFor(.CharacterMainCell)
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! CharacterMainTableViewCell
         
         cell.configWithChar(characters[indexPath.row])

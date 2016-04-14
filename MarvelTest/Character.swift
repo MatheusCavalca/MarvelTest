@@ -15,7 +15,7 @@ class Character {
     var charId: Int
     var name: String
     var description: String
-    var thumbnail: String
+    var thumbnailPath: String
     var thumbnailLoaded: UIImage?
     
     // MARK: - Initialization
@@ -26,7 +26,7 @@ class Character {
         description = dict["description"] as! String
         
         let thumbDict = dict["thumbnail"] as! [String: String]
-        thumbnail = thumbDict["path"]! + "." + thumbDict["extension"]!
+        thumbnailPath = thumbDict["path"]! + "." + thumbDict["extension"]!
     }
     
     // MARK: - Thumbnail Handlers
@@ -35,7 +35,7 @@ class Character {
         if let thumbnailLoadedUnw = thumbnailLoaded {
             completion(thumbnail: thumbnailLoadedUnw, character: self)
         } else {
-            getDataFromUrl(NSURL(string: thumbnail)!, completion: { (data, response, error) in
+            getDataFromUrl(NSURL(string: thumbnailPath)!, completion: { (data, response, error) in
                 if let dataUnw = data {
                     self.thumbnailLoaded = UIImage(data: dataUnw)
                     completion(thumbnail: self.thumbnailLoaded, character: self)
