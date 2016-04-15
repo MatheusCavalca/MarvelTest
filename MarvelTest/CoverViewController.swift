@@ -31,6 +31,10 @@ class CoverViewController: UIViewController {
         loadCovers()
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
     // MARK: - Configuration
     
     func configContent() {

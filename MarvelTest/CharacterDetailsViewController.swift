@@ -25,6 +25,9 @@ class CharacterDetailsViewController: UIViewController {
     var stories: [Appearance]!
     var events: [Appearance]!
 
+    let tvOffsetHeaderStart: CGFloat = 220.0
+    let tvOffsetHeaderAmount: CGFloat = 100.0
+    
     let labelTag = 100
     let heightForHeader: CGFloat = 30.0
     let nSections = 7
@@ -232,6 +235,22 @@ extension CharacterDetailsViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return heightForHeader
+    }
+    
+}
+
+extension CharacterDetailsViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if tableView.contentOffset.y >= tvOffsetHeaderStart + tvOffsetHeaderAmount {
+            viewHeader.alpha = 1.0
+        } else if tableView.contentOffset.y >= tvOffsetHeaderStart {
+            let difference = tableView.contentOffset.y - tvOffsetHeaderStart
+            let alpha = difference / tvOffsetHeaderAmount
+            viewHeader.alpha = alpha
+        } else {
+            viewHeader.alpha = 0.0
+        }
     }
     
 }
