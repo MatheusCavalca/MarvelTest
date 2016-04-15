@@ -53,7 +53,7 @@ class CoverViewController: UIViewController {
     func loadImage(imagePath: String) {
         getDataFromUrl(NSURL(string: imagePath)!, completion: { (data, response, error) in
             if let dataUnw = data {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                dispatch_sync(dispatch_get_main_queue(), { () -> Void in
                     let nibName = NibObjects.reuseIdentifierFor(.CoverView)
                     let nib = UINib(nibName: nibName, bundle: NSBundle.mainBundle())
                     let view = nib.instantiateWithOwner(self, options: nil)[0] as! CoverView

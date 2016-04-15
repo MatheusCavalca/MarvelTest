@@ -10,7 +10,7 @@ import UIKit
 
 protocol AppearanceCellDelegate: class {
     
-    func collectionCellSelected(indexPath: NSIndexPath) -> Void
+    func collectionCellSelected(appearance: Appearance) -> Void
     
 }
 
@@ -20,7 +20,7 @@ class AppearanceMainTableViewCell: UITableViewCell {
     
     weak var delegate:AppearanceCellDelegate?
     
-    var comics = [Appearance]()
+    var appearances = [Appearance]()
     @IBOutlet var collectionView: UICollectionView!
     
 }
@@ -28,12 +28,12 @@ class AppearanceMainTableViewCell: UITableViewCell {
 extension AppearanceMainTableViewCell: UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return comics.count
+        return appearances.count
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(NibObjects.reuseIdentifierFor(.AppearanceMainCollectionCell), forIndexPath: indexPath) as! AppearanceMainCollectionViewCell
-        cell.configWithComic(comics[indexPath.row])
+        cell.configWithAppearance(appearances[indexPath.row])
         
         return cell
     }
@@ -43,7 +43,7 @@ extension AppearanceMainTableViewCell: UICollectionViewDataSource {
 extension AppearanceMainTableViewCell: UICollectionViewDelegate {
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        delegate?.collectionCellSelected(indexPath)
+        delegate?.collectionCellSelected(appearances[indexPath.row])
     }
     
 }

@@ -14,7 +14,7 @@ class Appearance {
     
     var appearanceId: Int
     var title: String
-    var thumbnailPath: String
+    var thumbnailPath: String?
     var thumbnailLoaded: UIImage?
     var imagesPathes: [String]?
     var imagesLoaded: [String]?
@@ -23,8 +23,9 @@ class Appearance {
         appearanceId = dict["id"] as! Int
         title = dict["title"] as! String
         
-        let thumbDict = dict["thumbnail"] as! [String: String]
-        thumbnailPath = thumbDict["path"]! + "." + thumbDict["extension"]!
+        if let thumbDict = dict["thumbnail"] as? [String: String] {
+            thumbnailPath = thumbDict["path"]! + "." + thumbDict["extension"]!
+        }
         
         if let imagesArray = dict["images"] as? [[String: String]] {
             imagesPathes = [String]()
@@ -38,10 +39,15 @@ class Appearance {
     // MARK: - Thumbnail Handlers
     
     func loadThumbnail(completion: ((thumbnail: UIImage?, appearance: Appearance) -> Void)) {
+        if thumbnailPath == nil {
+            completion(thumbnail: nil, appearance: self)
+            return
+        }
+        
         if let thumbnailLoadedUnw = thumbnailLoaded {
             completion(thumbnail: thumbnailLoadedUnw, appearance: self)
         } else {
-            getDataFromUrl(NSURL(string: thumbnailPath)!, completion: { (data, response, error) in
+            getDataFromUrl(NSURL(string: thumbnailPath!)!, completion: { (data, response, error) in
                 if let dataUnw = data {
                     self.thumbnailLoaded = UIImage(data: dataUnw)
                     completion(thumbnail: self.thumbnailLoaded, appearance: self)

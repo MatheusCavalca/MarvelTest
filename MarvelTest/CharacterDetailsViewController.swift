@@ -12,12 +12,25 @@ class CharacterDetailsViewController: UIViewController {
     
     // MARK: - Properties
     
+    @IBOutlet var viewHeader: UIView!
     @IBOutlet var characterName: UILabel!
+    
     @IBOutlet var tableView: UITableView!
+    
+    @IBOutlet var characterImage: UIImageView!
     
     var character: Character!
     var comics = [Appearance]()
+    var series = [Appearance]()
+    var stories = [Appearance]()
+    var events = [Appearance]()
 
+    let labelTag = 100
+    let heightForHeader: CGFloat = 30.0
+    let nSections = 7
+    let headerTitles = ["NAME", "DESCRIPTION", "COMICS", "SERIES", "STORIES", "EVENTS", "RELATED LINKS"]
+    let nRowsInSection = [1, 1, 1, 1, 1, 1, 3]
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -25,6 +38,9 @@ class CharacterDetailsViewController: UIViewController {
         
         configContent()
         loadComics()
+        loadSeries()
+        loadStories()
+        loadEvents()
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -38,6 +54,14 @@ class CharacterDetailsViewController: UIViewController {
         tableView.estimatedRowHeight = 220.0
         
         characterName.text = character.name
+        
+        if let image = character.thumbnailLoaded {
+            characterImage.image = image
+        } else {
+            character.loadThumbnail({ (thumbnail, character) in
+                self.characterImage.image = thumbnail
+            })
+        }
     }
     
     func loadComics() {
@@ -45,6 +69,30 @@ class CharacterDetailsViewController: UIViewController {
             self.comics = comics
             self.tableView.reloadData()
             }) { (operation, error) in
+        }
+    }
+    
+    func loadSeries() {
+        MarvelAPIManager.sharedInstance.getSeriesWithCharacter(character.charId, success: { (operation, series) in
+            self.series = series
+            self.tableView.reloadData()
+        }) { (operation, error) in
+        }
+    }
+    
+    func loadStories() {
+        MarvelAPIManager.sharedInstance.getStoriesWithCharacter(character.charId, success: { (operation, stories) in
+            self.stories = stories
+            self.tableView.reloadData()
+        }) { (operation, error) in
+        }
+    }
+    
+    func loadEvents() {
+        MarvelAPIManager.sharedInstance.getEventsWithCharacter(character.charId, success: { (operation, events) in
+            self.events = events
+            self.tableView.reloadData()
+        }) { (operation, error) in
         }
     }
     
@@ -62,9 +110,8 @@ class CharacterDetailsViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "segueCover" {
-            let indexPath = sender as! NSIndexPath
             let destinationViewController = segue.destinationViewController as! CoverViewController
-            destinationViewController.apperance = comics[indexPath.row]
+            destinationViewController.apperance = sender as! Appearance
         }
     }
     
@@ -73,25 +120,90 @@ class CharacterDetailsViewController: UIViewController {
 extension CharacterDetailsViewController: UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return nSections
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if comics.count > 0 {
-            return 1
-        } else {
-            return 0
-        }
+        return nRowsInSection[section]
+    }
+
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let nibName = NibObjects.reuseIdentifierFor(.CharacterDetailsHeaderView)
+        let nib = UINib(nibName: nibName, bundle: NSBundle.mainBundle())
+        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        
+        let labelTitle = view.viewWithTag(labelTag) as! UILabel
+        labelTitle.text = headerTitles[section]
+        
+        return view
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cellIdentifier = NibObjects.reuseIdentifierFor(.ComicMainCell)
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AppearanceMainTableViewCell
-        
-        cell.comics = comics
-        cell.delegate = self
-        
-        return cell
+        let row = indexPath.row
+        let section = indexPath.section
+        switch section {
+        case 0:
+            let cellIdentifier = NibObjects.reuseIdentifierFor(.TextCell)
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+            
+            let label = cell.viewWithTag(labelTag) as! UILabel
+            label.text = character.name
+            
+            return cell
+        case 1:
+            let cellIdentifier = NibObjects.reuseIdentifierFor(.TextCell)
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+            
+            let label = cell.viewWithTag(labelTag) as! UILabel
+            label.text = character.description
+            
+            return cell
+        case 2 where comics.count > 0:
+            let cellIdentifier = NibObjects.reuseIdentifierFor(.ComicMainCell)
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AppearanceMainTableViewCell
+            
+            cell.appearances = comics
+            cell.delegate = self
+            
+            return cell
+        case 3 where series.count > 0:
+            let cellIdentifier = NibObjects.reuseIdentifierFor(.ComicMainCell)
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AppearanceMainTableViewCell
+            
+            cell.appearances = series
+            cell.delegate = self
+            
+            return cell
+        case 4 where stories.count > 0:
+            let cellIdentifier = NibObjects.reuseIdentifierFor(.ComicMainCell)
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AppearanceMainTableViewCell
+            
+            cell.appearances = stories
+            cell.delegate = self
+            
+            return cell
+        case 5 where events.count > 0:
+            let cellIdentifier = NibObjects.reuseIdentifierFor(.ComicMainCell)
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AppearanceMainTableViewCell
+            
+            cell.appearances = events
+            cell.delegate = self
+            
+            return cell
+        case 6 where row == 0:
+            let cellIdentifier = NibObjects.reuseIdentifierFor(.TextCell)
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+            
+            let label = cell.viewWithTag(labelTag) as! UILabel
+            label.text = character.description
+            
+            return cell
+        default:
+            let cellIdentifier = NibObjects.reuseIdentifierFor(.LoadingCell)
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+            
+            return cell
+        }
     }
     
 }
@@ -102,12 +214,16 @@ extension CharacterDetailsViewController: UITableViewDelegate {
         return UITableViewAutomaticDimension
     }
     
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return heightForHeader
+    }
+    
 }
 
 extension CharacterDetailsViewController: AppearanceCellDelegate {
     
-    func collectionCellSelected(indexPath: NSIndexPath) {
-        performSegueWithIdentifier("segueCover", sender: indexPath)
+    func collectionCellSelected(appearance: Appearance) {
+        performSegueWithIdentifier("segueCover", sender: appearance)
     }
     
 }

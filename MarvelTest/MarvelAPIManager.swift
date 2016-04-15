@@ -9,6 +9,9 @@
 import UIKit
 import AFNetworking
 
+typealias AppearancesSuccesHandler = (operation: AFHTTPRequestOperation!, appearances: [Appearance]) -> Void
+typealias ErrorHandler = (operation: AFHTTPRequestOperation!, error: NSError!) -> Void
+
 class MarvelAPIManager {
     
     let publicKey = "14555c551bd677c5aa887abcdfbe68b6"
@@ -25,6 +28,18 @@ class MarvelAPIManager {
     
     private lazy var getComicsURL: String = {
         return self.urlForRequest(requestKey:"GET_COMICS")
+    }()
+    
+    private lazy var getSeriesURL: String = {
+        return self.urlForRequest(requestKey:"GET_SERIES")
+    }()
+    
+    private lazy var getStoriesURL: String = {
+        return self.urlForRequest(requestKey:"GET_STORIES")
+    }()
+    
+    private lazy var getEventsURL: String = {
+        return self.urlForRequest(requestKey:"GET_EVENTS")
     }()
     
     // MARK: -- Singleton
@@ -46,8 +61,7 @@ class MarvelAPIManager {
     
     // MARK: - Comics
     
-    func getComicsWithCharacter(characterId: Int, success: (operation: AFHTTPRequestOperation!, comics: [Appearance]) -> Void, failure: (operation: AFHTTPRequestOperation!, error: NSError!) -> Void) {
-        
+    func getComicsWithCharacter(characterId: Int, success: AppearancesSuccesHandler, failure: ErrorHandler) {
         let comicFinalURL = String(format: getComicsURL)
         let ts = NSDate().timeIntervalSince1970.description
         let hash = md5(string:"\(ts)\(privateKey)\(publicKey)")
@@ -56,14 +70,89 @@ class MarvelAPIManager {
             let data = response["data"]
             let results = data!!["results"]
 
-            var comicList = [Appearance]()
+            var comicsList = [Appearance]()
             if let comicReturned = results as? [[String: AnyObject]] {
                 for comic in comicReturned {
                     let comicToAppend = Appearance(dict: comic)
-                    comicList.append(comicToAppend)
+                    comicsList.append(comicToAppend)
                 }
             }
-            success(operation: operation, comics: comicList)
+            success(operation: operation, appearances: comicsList)
+            
+            }, failure: { (operation, error) -> Void in
+                failure(operation: operation, error: error)
+        })
+    }
+    
+    // MARK: - Series
+    
+    func getSeriesWithCharacter(characterId: Int, success: AppearancesSuccesHandler, failure: ErrorHandler) {
+        let seriesFinalURL = String(format: getSeriesURL)
+        let ts = NSDate().timeIntervalSince1970.description
+        let hash = md5(string:"\(ts)\(privateKey)\(publicKey)")
+        
+        operationManager.GET(seriesFinalURL, parameters: ["apikey": publicKey, "ts" : ts, "hash": hash, "characters": characterId, "limit": defaultPageSize], success: { (operation, response) -> Void in
+            let data = response["data"]
+            let results = data!!["results"]
+            
+            var seriesList = [Appearance]()
+            if let serieReturned = results as? [[String: AnyObject]] {
+                for serie in serieReturned {
+                    let serieToAppend = Appearance(dict: serie)
+                    seriesList.append(serieToAppend)
+                }
+            }
+            success(operation: operation, appearances: seriesList)
+            
+            }, failure: { (operation, error) -> Void in
+                failure(operation: operation, error: error)
+        })
+    }
+    
+    // MARK: - Stories
+    
+    func getStoriesWithCharacter(characterId: Int, success: AppearancesSuccesHandler, failure: ErrorHandler) {
+        let storiesFinalURL = String(format: getStoriesURL)
+        let ts = NSDate().timeIntervalSince1970.description
+        let hash = md5(string:"\(ts)\(privateKey)\(publicKey)")
+        
+        operationManager.GET(storiesFinalURL, parameters: ["apikey": publicKey, "ts" : ts, "hash": hash, "characters": characterId, "limit": defaultPageSize], success: { (operation, response) -> Void in
+            let data = response["data"]
+            let results = data!!["results"]
+            
+            var storiesList = [Appearance]()
+            if let storyReturned = results as? [[String: AnyObject]] {
+                for story in storyReturned {
+                    let storyToAppend = Appearance(dict: story)
+                    storiesList.append(storyToAppend)
+                }
+            }
+            success(operation: operation, appearances: storiesList)
+            
+            }, failure: { (operation, error) -> Void in
+                failure(operation: operation, error: error)
+        })
+    }
+    
+    // MARK: - Events
+    
+    func getEventsWithCharacter(characterId: Int, success: AppearancesSuccesHandler, failure: ErrorHandler) {
+        let eventsFinalURL = String(format: getEventsURL)
+        let ts = NSDate().timeIntervalSince1970.description
+        let hash = md5(string:"\(ts)\(privateKey)\(publicKey)")
+        
+        operationManager.GET(eventsFinalURL, parameters: ["apikey": publicKey, "ts" : ts, "hash": hash, "characters": characterId, "limit": defaultPageSize], success: { (operation, response) -> Void in
+            let data = response["data"]
+            let results = data!!["results"]
+            
+            var eventsList = [Appearance]()
+            if let eventReturned = results as? [[String: AnyObject]] {
+                for event in eventReturned {
+                    let eventToAppend = Appearance(dict: event)
+                    eventsList.append(eventToAppend)
+                }
+            }
+            success(operation: operation, appearances: eventsList)
             
             }, failure: { (operation, error) -> Void in
                 failure(operation: operation, error: error)
@@ -72,7 +161,7 @@ class MarvelAPIManager {
     
     // MARK: - Characters
     
-    func getCharacters(page: Int, success: (operation: AFHTTPRequestOperation!, characters: [Character]) -> Void, failure: (operation: AFHTTPRequestOperation!, error: NSError!) -> Void) {
+    func getCharacters(page: Int, success: (operation: AFHTTPRequestOperation!, characters: [Character]) -> Void, failure: ErrorHandler) {
 
         let eventFinalURL = String(format: getCharactersURL)
         let ts = NSDate().timeIntervalSince1970.description
@@ -97,7 +186,7 @@ class MarvelAPIManager {
         })
     }
     
-    func getCharactersWithNameStartingWith(name: String, page: Int, success: (operation: AFHTTPRequestOperation!, characters: [Character]) -> Void, failure: (operation: AFHTTPRequestOperation!, error: NSError!) -> Void) {
+    func getCharactersWithNameStartingWith(name: String, page: Int, success: (operation: AFHTTPRequestOperation!, characters: [Character]) -> Void, failure: ErrorHandler) {
         
         let eventFinalURL = String(format: getCharactersURL)
         let ts = NSDate().timeIntervalSince1970.description

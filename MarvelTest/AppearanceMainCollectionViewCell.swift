@@ -13,22 +13,24 @@ class AppearanceMainCollectionViewCell: UICollectionViewCell {
     @IBOutlet var thumbnail: UIImageView!
     @IBOutlet var title: UILabel!
     
-    var comicLinked: Appearance!
+    var appearanceLinked: Appearance!
     
     override func prepareForReuse() {
         thumbnail.image = UIImage(named: "icn-cell-image-not-available")
-        comicLinked = nil
+        appearanceLinked = nil
     }
     
-    func configWithComic(comic: Appearance) {
-        title.text = comic.title
+    func configWithAppearance(appearance: Appearance) {
+        title.text = appearance.title
         thumbnail.image = UIImage(named: "icn-cell-image-not-available")
-        comicLinked = comic
+        appearanceLinked = appearance
         
-        comic.loadThumbnail { (thumbnail, comicReturned) in
+        appearance.loadThumbnail { (thumbnail, comicReturned) in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                if self.comicLinked.title == comicReturned.title {
-                    self.thumbnail.image = thumbnail
+                if self.appearanceLinked.title == comicReturned.title {
+                    if let thumbnailReturned = thumbnail {
+                        self.thumbnail.image = thumbnailReturned
+                    }
                 }
             })
         }

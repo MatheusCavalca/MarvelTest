@@ -28,7 +28,9 @@ class CharacterMainTableViewCell: UITableViewCell {
         character.loadThumbnail { (thumbnail, characterReturned) in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 if self.characterLinked.charId == characterReturned.charId {
-                    self.thumbnail.image = thumbnail
+                    if let thumbnailReturned = thumbnail {
+                        self.thumbnail.image = thumbnailReturned
+                    }
                 }
             })
         }

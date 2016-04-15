@@ -13,16 +13,22 @@ enum NibObjects: String {
     case CharacterMainCell,
         CharacterSearchCell,
         ComicMainCell,
+        TextCell,
+        LoadingCell,
         AppearanceMainCollectionCell,
-        CoverView
+        CoverView,
+        CharacterDetailsHeaderView
     
     static func reuseIdentifierFor(nibTableViewCell: NibObjects) -> String {
         switch nibTableViewCell {
         case .CharacterMainCell: return "CharacterMainCellIdentifier"
         case .CharacterSearchCell: return "CharacterSearchCellIdentifier"
         case .ComicMainCell: return "AppearanceMainCellIdentifier"
+        case .TextCell: return "TextCellIdentifier"
         case .AppearanceMainCollectionCell: return "AppearanceMainCollectionCellIdentifier"
         case .CoverView: return "CoverView"
+        case .CharacterDetailsHeaderView: return "CharacterDetailsHeaderView"
+        case .LoadingCell: return "LoadingCellIdentifier"
         }
     }
     

@@ -8,5 +8,11 @@
 	<string>/v1/public/comics</string>
 	<key>GET_CHARACTERS</key>
 	<string>/v1/public/characters</string>
+	<key>GET_EVENTS</key>
+	<string>/v1/public/events</string>
+	<key>GET_STORIES</key>
+	<string>/v1/public/stories</string>
+	<key>GET_SERIES</key>
+	<string>/v1/public/series</string>
 </dict>
 </plist>
