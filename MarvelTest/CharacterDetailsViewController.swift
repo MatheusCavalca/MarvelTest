@@ -68,6 +68,14 @@ class CharacterDetailsViewController: UIViewController {
                 self.characterImage.image = thumbnail
             })
         }
+    
+        if (!UIAccessibilityIsReduceTransparencyEnabled()) {
+            viewHeader.backgroundColor = UIColor.clearColor()
+            let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+            blurEffectView.frame = viewHeader.bounds
+            viewHeader.addSubview(blurEffectView)
+            viewHeader.sendSubviewToBack(blurEffectView)
+        }
     }
     
     func loadComics() {
