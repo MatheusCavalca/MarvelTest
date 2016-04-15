@@ -16,7 +16,7 @@ class CoverViewController: UIViewController {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var pageLabel: UILabel!
     
-    var apperance: Appearance!
+    var appearance: Appearance!
     
     var nLoadedImages: Int = 0
     var page: Int = 0
@@ -38,19 +38,25 @@ class CoverViewController: UIViewController {
     // MARK: - Configuration
     
     func configContent() {
-        titleLabel.text = apperance.title
+        titleLabel.text = appearance.title
         coversScrollView.delegate = self
     }
     
     func configPageLabel() {
-        pageLabel.text = (page + 1).description + "/" + nLoadedImages.description
+        if nLoadedImages > 0 {
+            pageLabel.text = (page + 1).description + "/" + nLoadedImages.description
+        } else {
+            pageLabel.text = "No images to show"
+        }
     }
     
     // MARK: - Images Helper
     
     func loadCovers() {
-        for i in 0 ..< apperance.imagesPathes!.count {
-            loadImage(apperance.imagesPathes![i])
+        if let imagePathes = appearance.imagesPathes {
+            for i in 0 ..< imagePathes.count {
+                loadImage(imagePathes[i])
+            }
         }
     }
     

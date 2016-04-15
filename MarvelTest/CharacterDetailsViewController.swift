@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class CharacterDetailsViewController: UIViewController {
     
@@ -67,7 +68,9 @@ class CharacterDetailsViewController: UIViewController {
             characterImage.image = image
         } else {
             character.loadThumbnail({ (thumbnail, character) in
-                self.characterImage.image = thumbnail
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.characterImage.image = thumbnail
+                });
             })
         }
     
@@ -127,7 +130,7 @@ class CharacterDetailsViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "segueCover" {
             let destinationViewController = segue.destinationViewController as! CoverViewController
-            destinationViewController.apperance = sender as! Appearance
+            destinationViewController.appearance = sender as! Appearance
         }
     }
     
@@ -171,7 +174,8 @@ extension CharacterDetailsViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
             
             let label = cell.viewWithTag(labelTag) as! UILabel
-            if let description = character.description {
+            
+            if let description = character.description where description != "" {
                 label.text = description
             } else {
                 label.text = noDescription
@@ -290,12 +294,22 @@ extension CharacterDetailsViewController: UIScrollViewDelegate {
                 }
                 break;
             }
-            
-            UIApplication.sharedApplication().openURL(URL)
+
+            let svc = SFSafariViewController(URL: URL)
+            svc.view.tintColor = UIColor.blackColor()
+            svc.delegate = self
+            self.presentViewController(svc, animated: true, completion: nil)
         }
     }
 }
 
+extension CharacterDetailsViewController: SFSafariViewControllerDelegate {
+    
+    func safariViewControllerDidFinish(controller: SFSafariViewController) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+}
 extension CharacterDetailsViewController: AppearanceCellDelegate {
     
     func collectionCellSelected(appearance: Appearance) {

@@ -130,10 +130,7 @@ class SearchCharacterViewController: UIViewController {
     }
     
     func loadCharactersWithNewSearch(name: String) {
-        page = 0
-        characters = [Character]()
-        tableView.reloadData()
-        stopLoadingOnFooterOfTableView(tableView)
+        clearSearchData()
         loadCharactersWithStartName(name)
     }
     
@@ -141,6 +138,13 @@ class SearchCharacterViewController: UIViewController {
     
     @IBAction func cancelDismiss(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func clearSearchData() {
+        page = 0
+        characters = [Character]()
+        tableView.reloadData()
+        stopLoadingOnFooterOfTableView(tableView)
     }
     
     // MARK: - Navigation
@@ -168,6 +172,11 @@ extension SearchCharacterViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldShouldClear(textField: UITextField) -> Bool {
+        clearSearchData()
         return true
     }
     
