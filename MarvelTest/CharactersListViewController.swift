@@ -42,6 +42,8 @@ class CharactersListViewController: UIViewController {
         super.viewDidLoad()
         
         isLoading = true
+        
+        startLoadingOnFooterOfTableView(tableView)
         loadCharacters()
     }
 
@@ -87,6 +89,9 @@ class CharactersListViewController: UIViewController {
     }
     
     func didRetrievedCharsError(charList: [Character]) {
+        if characters.count > 0 {
+            loadMoreCharacters()
+        }
         isLoading = false
     }
     

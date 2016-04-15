@@ -20,16 +20,19 @@ class CharacterDetailsViewController: UIViewController {
     @IBOutlet var characterImage: UIImageView!
     
     var character: Character!
-    var comics = [Appearance]()
-    var series = [Appearance]()
-    var stories = [Appearance]()
-    var events = [Appearance]()
+    var comics: [Appearance]!
+    var series: [Appearance]!
+    var stories: [Appearance]!
+    var events: [Appearance]!
 
     let labelTag = 100
     let heightForHeader: CGFloat = 30.0
     let nSections = 7
     let headerTitles = ["NAME", "DESCRIPTION", "COMICS", "SERIES", "STORIES", "EVENTS", "RELATED LINKS"]
     let nRowsInSection = [1, 1, 1, 1, 1, 1, 3]
+    
+    let nothingToDisplay = "Nothing to display"
+    let noDescription = "No description to display"
     
     // MARK: - Life Cycle
     
@@ -155,7 +158,16 @@ extension CharacterDetailsViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
             
             let label = cell.viewWithTag(labelTag) as! UILabel
-            label.text = character.description
+            if character.description != "" {
+                label.text = character.description
+            } else {
+                label.text = noDescription
+            }
+            
+            return cell
+        case 2 where comics == nil, 3 where series == nil, 4 where stories == nil, 5 where events == nil:
+            let cellIdentifier = NibObjects.reuseIdentifierFor(.LoadingCell)
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
             
             return cell
         case 2 where comics.count > 0:
@@ -190,6 +202,7 @@ extension CharacterDetailsViewController: UITableViewDataSource {
             cell.delegate = self
             
             return cell
+            
         case 6 where row == 0:
             let cellIdentifier = NibObjects.reuseIdentifierFor(.TextCell)
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
@@ -201,6 +214,9 @@ extension CharacterDetailsViewController: UITableViewDataSource {
         default:
             let cellIdentifier = NibObjects.reuseIdentifierFor(.LoadingCell)
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+            
+            let label = cell.viewWithTag(labelTag) as! UILabel
+            label.text = nothingToDisplay
             
             return cell
         }

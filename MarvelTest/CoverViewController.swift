@@ -61,10 +61,12 @@ class CoverViewController: UIViewController {
                     view.coverImage.image = UIImage(data: dataUnw)
                     self.coversScrollView.addSubview(view)
                     
-                    let floatLoadedImages = CGFloat(self.nLoadedImages)
+                    var floatLoadedImages = CGFloat(self.nLoadedImages)
                     view.frame = CGRectMake(self.coversScrollView.frame.size.width * floatLoadedImages, 0, self.coversScrollView.frame.size.width, self.coversScrollView.frame.size.height)
                     
                     self.nLoadedImages += 1
+                    floatLoadedImages += 1.0
+                    
                     self.configPageLabel()
                     
                     self.coversScrollView.contentSize = CGSizeMake(self.coversScrollView.frame.size.width * floatLoadedImages, self.coversScrollView.frame.size.height)
