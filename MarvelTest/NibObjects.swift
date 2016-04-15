@@ -15,6 +15,7 @@ enum NibObjects: String {
         ComicMainCell,
         TextCell,
         LoadingCell,
+        RelatedLinksCell,
         AppearanceMainCollectionCell,
         CoverView,
         CharacterDetailsHeaderView
@@ -29,6 +30,7 @@ enum NibObjects: String {
         case .CoverView: return "CoverView"
         case .CharacterDetailsHeaderView: return "CharacterDetailsHeaderView"
         case .LoadingCell: return "LoadingCellIdentifier"
+        case .RelatedLinksCell: return "RelatedLinksCellIdentifier"
         }
     }
     

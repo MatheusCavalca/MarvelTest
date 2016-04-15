@@ -29,10 +29,12 @@ class CharacterDetailsViewController: UIViewController {
     let tvOffsetHeaderAmount: CGFloat = 100.0
     
     let labelTag = 100
-    let heightForHeader: CGFloat = 30.0
+    let heightForHeader: CGFloat = 40.0
     let nSections = 7
     let headerTitles = ["NAME", "DESCRIPTION", "COMICS", "SERIES", "STORIES", "EVENTS", "RELATED LINKS"]
     let nRowsInSection = [1, 1, 1, 1, 1, 1, 3]
+    
+    let relatedLinksTitles = ["Detail", "Wiki", "Comiclink"]
     
     let nothingToDisplay = "Nothing to display"
     let noDescription = "No description to display"
@@ -169,8 +171,8 @@ extension CharacterDetailsViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
             
             let label = cell.viewWithTag(labelTag) as! UILabel
-            if character.description != "" {
-                label.text = character.description
+            if let description = character.description {
+                label.text = description
             } else {
                 label.text = noDescription
             }
@@ -213,13 +215,12 @@ extension CharacterDetailsViewController: UITableViewDataSource {
             cell.delegate = self
             
             return cell
-            
-        case 6 where row == 0:
-            let cellIdentifier = NibObjects.reuseIdentifierFor(.TextCell)
+        case 6:
+            let cellIdentifier = NibObjects.reuseIdentifierFor(.RelatedLinksCell)
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
             
             let label = cell.viewWithTag(labelTag) as! UILabel
-            label.text = character.description
+            label.text = relatedLinksTitles[row]
             
             return cell
         default:
@@ -261,6 +262,38 @@ extension CharacterDetailsViewController: UIScrollViewDelegate {
         }
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        if indexPath.section == 6 {
+            var URL: NSURL!
+            switch indexPath.row {
+            case 0:
+                if let detailURL = character.detailURL {
+                    URL = NSURL(string: detailURL)
+                } else {
+                    return
+                }
+                break;
+            case 1:
+                if let wikiURL = character.wikiURL {
+                    URL = NSURL(string: wikiURL)
+                } else {
+                    return
+                }
+                break;
+            default:
+                if let comicLinkURL = character.comicLinkURL {
+                    URL = NSURL(string: comicLinkURL)
+                } else {
+                    return
+                }
+                break;
+            }
+            
+            UIApplication.sharedApplication().openURL(URL)
+        }
+    }
 }
 
 extension CharacterDetailsViewController: AppearanceCellDelegate {
