@@ -10,15 +10,21 @@ import UIKit
 
 class AppearanceMainCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - Properties
+    
     @IBOutlet var thumbnail: UIImageView!
     @IBOutlet var title: UILabel!
     
     var appearanceLinked: Appearance!
     
+    // MARK: - Life Cycle
+    
     override func prepareForReuse() {
         thumbnail.image = UIImage(named: "icn-cell-image-not-available")
         appearanceLinked = nil
     }
+    
+    // MARK: - Configuration
     
     func configWithAppearance(appearance: Appearance) {
         title.text = appearance.title

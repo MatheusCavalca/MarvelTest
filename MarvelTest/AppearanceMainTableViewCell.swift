@@ -16,12 +16,18 @@ protocol AppearanceCellDelegate: class {
 
 class AppearanceMainTableViewCell: UITableViewCell {
 
-    // MARK: Properties
+    // MARK: - Properties
     
     weak var delegate:AppearanceCellDelegate?
     
     var appearances = [Appearance]()
     @IBOutlet var collectionView: UICollectionView!
+    
+    // MARK: - Life Cycle
+    
+    override func prepareForReuse() {
+        appearances = [Appearance]()
+    }
     
 }
 

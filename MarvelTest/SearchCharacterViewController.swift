@@ -209,5 +209,13 @@ extension SearchCharacterViewController: UITableViewDelegate {
         performSegueWithIdentifier("segueSearchCharacterDetails", sender: indexPath)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
+
+}
+
+extension SearchCharacterViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        searchField.resignFirstResponder()
+    }
     
 }

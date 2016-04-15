@@ -10,15 +10,21 @@ import UIKit
 
 class CharacterMainTableViewCell: UITableViewCell {
     
+    // MARK: - Properties
+    
     @IBOutlet var thumbnail: UIImageView!
     @IBOutlet var charName: UILabel!
     
     var characterLinked: Character!
     
+    // MARK: - Life Cycle
+    
     override func prepareForReuse() {
         thumbnail.image = UIImage(named: "icn-cell-image-not-available")
         characterLinked = nil
     }
+    
+    // MARK: - Configuration
     
     func configWithChar(character: Character) {
         charName.text = character.name
