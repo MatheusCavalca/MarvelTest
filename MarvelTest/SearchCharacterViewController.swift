@@ -38,8 +38,28 @@ class SearchCharacterViewController: UIViewController {
     
     // MARK: - Life Cycle
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        configContent()
+    }
+    
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
+    }
+    
+    // MARK: - Configuration
+    
+    func configContent() {
+        searchField.leftViewMode = .Always
+        let searchIcon = UIImageView(frame: CGRectMake(10, 5, 20, 20))
+        searchIcon.image = UIImage(named: "icn-nav-search")
+        searchIcon.image = searchIcon.image!.imageWithRenderingMode(.AlwaysTemplate)
+        searchIcon.tintColor = UIColor.grayColor()
+            
+        let paddingView = UIView(frame: CGRectMake(20, 0, 40, 30))
+        paddingView.addSubview(searchIcon)
+        searchField.leftView = paddingView
     }
     
     // MARK: - API Helpers
