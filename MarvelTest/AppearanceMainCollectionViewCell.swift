@@ -20,7 +20,7 @@ class AppearanceMainCollectionViewCell: UICollectionViewCell {
     // MARK: - Life Cycle
     
     override func prepareForReuse() {
-        thumbnail.image = UIImage(named: "icn-cell-image-not-available")
+        thumbnail.image = nil
         appearanceLinked = nil
     }
     
@@ -28,14 +28,15 @@ class AppearanceMainCollectionViewCell: UICollectionViewCell {
     
     func configWithAppearance(appearance: Appearance) {
         title.text = appearance.title
-        thumbnail.image = UIImage(named: "icn-cell-image-not-available")
         appearanceLinked = appearance
         
-        appearance.loadThumbnail { (thumbnail, comicReturned) in
+        appearance.loadThumbnail { (thumbnail, appearanceReturned) in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                if self.appearanceLinked.title == comicReturned.title {
+                if self.appearanceLinked.title == appearanceReturned.title {
                     if let thumbnailReturned = thumbnail {
                         self.thumbnail.image = thumbnailReturned
+                    } else {
+                        self.thumbnail.image = UIImage(named:"icn-cell-image-not-available")
                     }
                 }
             })

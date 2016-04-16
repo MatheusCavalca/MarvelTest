@@ -27,6 +27,7 @@ class AppearanceMainTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         appearances = [Appearance]()
+        collectionView.reloadData()
     }
     
 }

@@ -15,7 +15,23 @@ class CharactersListViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     
-    var characters = [Character]()
+    let usePhotoFilter = true
+    
+    var characters = [Character]()  {
+        didSet {
+            charactersWithPhoto = characters.filter({$0.hasPhoto})
+        }
+    }
+    var charactersWithPhoto = [Character]()
+    var charactersToDisplay: [Character]! {
+        get {
+            if usePhotoFilter {
+                return charactersWithPhoto
+            } else {
+                return characters
+            }
+        }
+    }
     
     var apiManager = MarvelAPIManager.sharedInstance
     
@@ -70,9 +86,16 @@ class CharactersListViewController: UIViewController {
         } else {
             self.characters.appendContentsOf(charList)
             
-            let startIndex = characters.count - charList.count
+            var listRetrievedCount: Int!
+            if usePhotoFilter {
+                listRetrievedCount = charList.filter({$0.hasPhoto}).count
+            } else {
+                listRetrievedCount = charList.count
+            }
+            
+            let startIndex = charactersToDisplay.count - listRetrievedCount
             var indexPathes = [NSIndexPath]()
-            for i in startIndex ..< characters.count {
+            for i in startIndex ..< charactersToDisplay.count {
                 indexPathes.append(NSIndexPath(forRow: i, inSection: 0))
             }
             self.tableView.insertRowsAtIndexPaths(indexPathes, withRowAnimation: .Automatic)
@@ -89,7 +112,7 @@ class CharactersListViewController: UIViewController {
     }
     
     func didRetrievedCharsError(charList: [Character]) {
-        if characters.count > 0 {
+        if charactersToDisplay.count > 0 {
             loadMoreCharacters()
         }
         isLoading = false
@@ -129,7 +152,7 @@ class CharactersListViewController: UIViewController {
         if segue.identifier == "segueCharacterDetails" {
             let indexPath = sender as! NSIndexPath
             let destinationViewController = segue.destinationViewController as! CharacterDetailsViewController
-            destinationViewController.character = characters[indexPath.row]
+            destinationViewController.character = charactersToDisplay[indexPath.row]
         }
     }
     
@@ -138,18 +161,18 @@ class CharactersListViewController: UIViewController {
 extension CharactersListViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return characters.count
+        return charactersToDisplay.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.row == characters.count - 1 {
+        if indexPath.row == charactersToDisplay.count - 1 {
             loadMoreCharacters()
         }
         
         let cellIdentifier = NibObjects.reuseIdentifierFor(.CharacterMainCell)
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! CharacterMainTableViewCell
         
-        cell.configWithChar(characters[indexPath.row])
+        cell.configWithChar(charactersToDisplay[indexPath.row])
         
         return cell
     }

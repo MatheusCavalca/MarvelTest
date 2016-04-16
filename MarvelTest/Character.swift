@@ -21,6 +21,12 @@ class Character {
     var wikiURL: String?
     var comicLinkURL: String?
     
+    var hasPhoto: Bool {
+        get {
+            return !(thumbnailPath!.containsString("image_not_available"))
+        }
+    }
+    
     // MARK: - Initialization
     
     init(dict: [String: AnyObject]) {

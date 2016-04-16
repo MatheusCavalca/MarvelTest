@@ -57,7 +57,7 @@ class SearchCharacterViewController: UIViewController {
         searchIcon.image = searchIcon.image!.imageWithRenderingMode(.AlwaysTemplate)
         searchIcon.tintColor = UIColor.grayColor()
             
-        let paddingView = UIView(frame: CGRectMake(20, 0, 40, 30))
+        let paddingView = UIView(frame: CGRectMake(15, 0, 30, 30))
         paddingView.addSubview(searchIcon)
         searchField.leftView = paddingView
     }

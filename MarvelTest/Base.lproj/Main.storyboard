@@ -37,7 +37,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="160"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icn-cell-image-not-available" translatesAutoresizingMaskIntoConstraints="NO" id="Tax-ur-MmU">
+                                                <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tax-ur-MmU">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="159.5"/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-cell-title" translatesAutoresizingMaskIntoConstraints="NO" id="nEz-38-jMX">
@@ -153,7 +153,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="320"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icn-cell-image-not-available" translatesAutoresizingMaskIntoConstraints="NO" id="UrW-Uk-w7X">
+                                        <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UrW-Uk-w7X">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="320"/>
                                         </imageView>
                                     </subviews>
@@ -216,7 +216,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="105" height="200"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icn-cell-image-not-available" translatesAutoresizingMaskIntoConstraints="NO" id="oRS-GY-CgC">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oRS-GY-CgC">
                                                                         <rect key="frame" x="0.0" y="0.0" width="105" height="150"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="150" id="MPc-TI-Lnt"/>
@@ -625,13 +625,12 @@
     <resources>
         <image name="bg-cell-title" width="160" height="36"/>
         <image name="icn-cell-disclosure" width="26" height="26"/>
-        <image name="icn-cell-image-not-available" width="633" height="537"/>
         <image name="icn-nav-back-white" width="28" height="28"/>
         <image name="icn-nav-close-white" width="28" height="28"/>
         <image name="icn-nav-marvel" width="62" height="28"/>
         <image name="icn-nav-search" width="28" height="28"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="p8B-hK-L5z"/>
+        <segue reference="1ck-FU-tyz"/>
     </inferredMetricsTieBreakers>
 </document>

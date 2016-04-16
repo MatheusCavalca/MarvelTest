@@ -20,7 +20,7 @@ class CharacterMainTableViewCell: UITableViewCell {
     // MARK: - Life Cycle
     
     override func prepareForReuse() {
-        thumbnail.image = UIImage(named: "icn-cell-image-not-available")
+        thumbnail.image = nil
         characterLinked = nil
     }
     
@@ -28,7 +28,6 @@ class CharacterMainTableViewCell: UITableViewCell {
     
     func configWithChar(character: Character) {
         charName.text = character.name
-        thumbnail.image = UIImage(named: "icn-cell-image-not-available")
         characterLinked = character
         
         character.loadThumbnail { (thumbnail, characterReturned) in
