@@ -12,7 +12,7 @@ import AFNetworking
 @testable import MarvelTest
 
 class MarvelGeneralTests: XCTestCase {
-
+    
     // MARK: - Life Cycle
     
     override func setUp() {
@@ -22,7 +22,7 @@ class MarvelGeneralTests: XCTestCase {
     override func tearDown() {
         super.tearDown()
     }
-    
+
     // MARK: - API Requests & Data Objects initialization
     
     func testCharacterAPIRequest() {
@@ -106,6 +106,5 @@ class MarvelGeneralTests: XCTestCase {
         
         waitForExpectationsWithTimeout(10.0, handler: { error in XCTAssertNil(error, "Expectation failed with error: " + (error?.description)!)})
     }
-    
     
 }

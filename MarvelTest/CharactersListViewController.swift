@@ -15,7 +15,7 @@ class CharactersListViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     
-    let usePhotoFilter = true
+    var usePhotoFilter = true
     
     var characters = [Character]()  {
         didSet {
