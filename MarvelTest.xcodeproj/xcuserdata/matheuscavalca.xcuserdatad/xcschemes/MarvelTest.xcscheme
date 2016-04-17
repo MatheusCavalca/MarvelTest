@@ -20,6 +20,34 @@
                ReferencedContainer = "container:MarvelTest.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "388A64901CBD23C8007E20DD"
+               BuildableName = "MarvelTestTests.xctest"
+               BlueprintName = "MarvelTestTests"
+               ReferencedContainer = "container:MarvelTest.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "388A649B1CBD23C8007E20DD"
+               BuildableName = "MarvelTestUITests.xctest"
+               BlueprintName = "MarvelTestUITests"
+               ReferencedContainer = "container:MarvelTest.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

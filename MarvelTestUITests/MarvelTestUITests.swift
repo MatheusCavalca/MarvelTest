@@ -6,7 +6,11 @@
 //  Copyright © 2016 Matheus Cavalca. All rights reserved.
 //
 
+
 import XCTest
+import UIKit
+import AFNetworking
+@testable import MarvelTest
 
 class MarvelTestUITests: XCTestCase {
         
@@ -23,14 +27,19 @@ class MarvelTestUITests: XCTestCase {
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+    func testCharacterTableViewScroll() {
+        let tablesQuery = XCUIApplication().tables
+        tablesQuery.staticTexts["3-D Man"].swipeUp()
+        tablesQuery.staticTexts["Adam Warlock"].swipeUp()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testSearchCharacter() {
+        let app = XCUIApplication()
+        app.buttons["icn nav search"].tap()
+        app.textFields["Search..."].tap()
+        app.textFields["Search..."].typeText("Dead")
+        sleep(5)
+        XCTAssertTrue(app.tables.cells.count > 0, "Search for character didn't work or timeout occured")
     }
     
 }
