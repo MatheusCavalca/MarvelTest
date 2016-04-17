@@ -43,9 +43,9 @@ class Character {
                 if url["type"] as? String == "detail" {
                     detailURL = url["url"] as? String
                 } else if url["type"] as? String == "wiki" {
-                    wikiURL = url["wiki"] as? String
+                    wikiURL = url["url"] as? String
                 } else if url["type"] as? String == "comiclink" {
-                    comicLinkURL = url["comiclink"] as? String
+                    comicLinkURL = url["url"] as? String
                 }
             }
         }
