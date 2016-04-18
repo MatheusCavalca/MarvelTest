@@ -42,7 +42,7 @@ class CharactersListViewController: UIViewController {
     
     let footerPlaceholderView = UIView()
     lazy var loadingIndicator: UIView = {
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 40.0))
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 70.0))
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
         
         activityIndicator.startAnimating()

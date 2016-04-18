@@ -61,7 +61,7 @@ class CharacterDetailsViewController: UIViewController {
     let tvOffsetHeaderAmount: CGFloat = 100.0
     
     let labelTag = 100
-    let heightForHeader: CGFloat = 40.0
+    let heightForHeader: CGFloat = 30.0
     let nSections = 7
     let headerTitles: [CharacterDetailsRow] = [.Name, .Description, .Comics, .Series, .Stories, .Events, .RelatedLinks]
     let nRowsInSection = [1, 1, 1, 1, 1, 1, 3]
