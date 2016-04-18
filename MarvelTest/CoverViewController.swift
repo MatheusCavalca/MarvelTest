@@ -131,13 +131,9 @@ extension CoverViewController: UIScrollViewDelegate {
         
         let coeficientContent = (scrollView.contentOffset.x * 2.0 + pageWidth) / (pageWidth * 2.0)
         let coeficientPag = coeficientContent - CGFloat(page)
-        
-        print(coeficientPag)
-        print(page)
 
         let currentView = coverViews[page]
-        print(currentView.tag)
-        
+
         if coeficientPag <= 0.5 {
             currentView.alpha = coeficientPag * 2 + 0.2
         } else {
