@@ -15,7 +15,7 @@ class CharactersListViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     
-    let usePhotoFilter = true
+    let useThumbnailFilter = true
     let useParallax = false
     
     var characters = [Character]()  {
@@ -26,7 +26,7 @@ class CharactersListViewController: UIViewController {
     var charactersWithPhoto = [Character]()
     var charactersToDisplay: [Character]! {
         get {
-            if usePhotoFilter {
+            if useThumbnailFilter {
                 return charactersWithPhoto
             } else {
                 return characters
@@ -88,7 +88,7 @@ class CharactersListViewController: UIViewController {
             self.characters.appendContentsOf(charList)
             
             var listRetrievedCount: Int!
-            if usePhotoFilter {
+            if useThumbnailFilter {
                 listRetrievedCount = charList.filter({$0.hasPhoto}).count
             } else {
                 listRetrievedCount = charList.count
