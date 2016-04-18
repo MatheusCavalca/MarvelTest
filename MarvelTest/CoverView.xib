@@ -12,15 +12,15 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Egd-2T-bfB">
-                    <rect key="frame" x="25" y="15" width="550" height="370"/>
+                    <rect key="frame" x="10" y="0.0" width="580" height="400"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Egd-2T-bfB" secondAttribute="bottom" constant="15" id="I7h-de-VUU"/>
-                <constraint firstItem="Egd-2T-bfB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="25" id="TO6-KD-eUz"/>
-                <constraint firstAttribute="trailing" secondItem="Egd-2T-bfB" secondAttribute="trailing" constant="25" id="coG-Po-Cw4"/>
-                <constraint firstItem="Egd-2T-bfB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="pjT-fy-hpl"/>
+                <constraint firstAttribute="bottom" secondItem="Egd-2T-bfB" secondAttribute="bottom" id="I7h-de-VUU"/>
+                <constraint firstItem="Egd-2T-bfB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="TO6-KD-eUz"/>
+                <constraint firstAttribute="trailing" secondItem="Egd-2T-bfB" secondAttribute="trailing" constant="10" id="coG-Po-Cw4"/>
+                <constraint firstItem="Egd-2T-bfB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="pjT-fy-hpl"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>

@@ -444,9 +444,13 @@
                                     <action selector="cancelDismiss:" destination="35J-dy-xxD" eventType="touchUpInside" id="Dod-OL-AFU"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOe-pw-oko">
-                                <rect key="frame" x="0.0" y="90" width="600" height="400"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOe-pw-oko" customClass="CoverScrollView" customModule="MarvelTest" customModuleProvider="target">
+                                <rect key="frame" x="20" y="90" width="560" height="400"/>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZTw-pQ-Swj">
+                                <rect key="frame" x="0.0" y="90" width="600" height="400"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hvX-54-TeN">
                                 <rect key="frame" x="15" y="510" width="570" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -460,21 +464,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.12941176470588234" green="0.13725490196078433" blue="0.14509803921568626" alpha="0.96999999999999997" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="1oV-uV-70V" firstAttribute="top" secondItem="hOe-pw-oko" secondAttribute="bottom" constant="110" id="0cT-QJ-UKO"/>
-                            <constraint firstAttribute="trailing" secondItem="hOe-pw-oko" secondAttribute="trailing" id="1bJ-JQ-MrP"/>
+                            <constraint firstAttribute="trailing" secondItem="hOe-pw-oko" secondAttribute="trailing" constant="20" id="1bJ-JQ-MrP"/>
                             <constraint firstItem="hOe-pw-oko" firstAttribute="top" secondItem="bOR-N5-HLO" secondAttribute="bottom" constant="70" id="3We-yL-UXB"/>
                             <constraint firstItem="vAJ-Ia-Bpz" firstAttribute="top" secondItem="hvX-54-TeN" secondAttribute="bottom" constant="10" id="4ET-Oo-gU4"/>
                             <constraint firstItem="hvX-54-TeN" firstAttribute="top" secondItem="hOe-pw-oko" secondAttribute="bottom" constant="20" id="8kx-fc-xvi"/>
+                            <constraint firstItem="ZTw-pQ-Swj" firstAttribute="leading" secondItem="03b-E9-dbd" secondAttribute="leading" id="93Y-hR-X8w"/>
+                            <constraint firstAttribute="trailing" secondItem="ZTw-pQ-Swj" secondAttribute="trailing" id="Baq-hU-ULV"/>
+                            <constraint firstItem="ZTw-pQ-Swj" firstAttribute="centerY" secondItem="hOe-pw-oko" secondAttribute="centerY" id="IVV-Af-EOA"/>
                             <constraint firstItem="hvX-54-TeN" firstAttribute="leading" secondItem="03b-E9-dbd" secondAttribute="leading" constant="15" id="KhC-K8-UIr"/>
                             <constraint firstItem="vAJ-Ia-Bpz" firstAttribute="leading" secondItem="03b-E9-dbd" secondAttribute="leading" constant="15" id="UHp-35-yGK"/>
                             <constraint firstAttribute="trailing" secondItem="vAJ-Ia-Bpz" secondAttribute="trailing" constant="15" id="eVA-yS-emM"/>
                             <constraint firstAttribute="trailing" secondItem="hvX-54-TeN" secondAttribute="trailing" constant="15" id="gXx-n5-Mbz"/>
                             <constraint firstItem="hvX-54-TeN" firstAttribute="centerX" secondItem="03b-E9-dbd" secondAttribute="centerX" id="l14-yf-rfk"/>
-                            <constraint firstItem="hOe-pw-oko" firstAttribute="leading" secondItem="03b-E9-dbd" secondAttribute="leading" id="l2T-At-ula"/>
+                            <constraint firstItem="hOe-pw-oko" firstAttribute="leading" secondItem="03b-E9-dbd" secondAttribute="leading" constant="20" id="l2T-At-ula"/>
                             <constraint firstItem="Dfo-i7-SUj" firstAttribute="top" secondItem="bOR-N5-HLO" secondAttribute="bottom" constant="5" id="qyV-RX-p2d"/>
                             <constraint firstAttribute="trailing" secondItem="Dfo-i7-SUj" secondAttribute="trailing" constant="5" id="rJB-xa-xg9"/>
+                            <constraint firstItem="ZTw-pQ-Swj" firstAttribute="height" secondItem="hOe-pw-oko" secondAttribute="height" id="yMs-DZ-SEw"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -484,6 +492,7 @@
                     </view>
                     <connections>
                         <outlet property="coversScrollView" destination="hOe-pw-oko" id="cw7-JX-eF4"/>
+                        <outlet property="customPagingView" destination="ZTw-pQ-Swj" id="ZN8-F1-lNz"/>
                         <outlet property="pageLabel" destination="vAJ-Ia-Bpz" id="5Ax-wE-5iN"/>
                         <outlet property="titleLabel" destination="hvX-54-TeN" id="4b9-Oh-yKc"/>
                     </connections>

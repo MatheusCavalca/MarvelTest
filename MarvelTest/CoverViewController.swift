@@ -12,6 +12,7 @@ class CoverViewController: UIViewController {
 
     // MARK: - Properties
     
+    @IBOutlet var customPagingView: UIView!
     @IBOutlet var coversScrollView: UIScrollView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var pageLabel: UILabel!
@@ -20,6 +21,13 @@ class CoverViewController: UIViewController {
     
     var nLoadedImages: Int = 0
     var page: Int = 0
+    var coverViews = [UIView]()
+    
+    var coverViewsPadding: CGFloat {
+        get {
+            return coversScrollView.frame.origin.x
+        }
+    }
     
     let imageTag = 100
     
@@ -42,6 +50,8 @@ class CoverViewController: UIViewController {
     func configContent() {
         titleLabel.text = appearance.title
         coversScrollView.delegate = self
+        coversScrollView.clipsToBounds = false
+        customPagingView.addGestureRecognizer(coversScrollView.panGestureRecognizer)
     }
     
     func configPageLabel() {
@@ -72,10 +82,10 @@ class CoverViewController: UIViewController {
                     
                     let imageView = view.viewWithTag(self.imageTag) as! UIImageView
                     imageView.image = UIImage(data: dataUnw)
-                    self.coversScrollView.addSubview(view)
                     
                     var floatLoadedImages = CGFloat(self.nLoadedImages)
                     view.frame = CGRectMake(self.coversScrollView.frame.size.width * floatLoadedImages, 0, self.coversScrollView.frame.size.width, self.coversScrollView.frame.size.height)
+                    view.tag = self.nLoadedImages
                     
                     self.nLoadedImages += 1
                     floatLoadedImages += 1.0
@@ -86,10 +96,14 @@ class CoverViewController: UIViewController {
                     
                     if floatLoadedImages > 1 {
                         self.coversScrollView.scrollEnabled = true
+                        view.alpha = 0.2
                     } else {
+                        view.alpha = 1.0
                         self.coversScrollView.scrollEnabled = false
                     }
                     
+                    self.coversScrollView.addSubview(view)
+                    self.coverViews.append(view)
                 })
             }
         })
@@ -112,8 +126,24 @@ class CoverViewController: UIViewController {
 extension CoverViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        let pageWidth:CGFloat = coversScrollView.frame.size.width
-        page = Int(floor((coversScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1)
+        let pageWidth:CGFloat = scrollView.frame.size.width
+        page = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1)
+        
+        let coeficientContent = (scrollView.contentOffset.x * 2.0 + pageWidth) / (pageWidth * 2.0)
+        let coeficientPag = coeficientContent - CGFloat(page)
+        
+        print(coeficientPag)
+        print(page)
+
+        let currentView = coverViews[page]
+        print(currentView.tag)
+        
+        if coeficientPag <= 0.5 {
+            currentView.alpha = coeficientPag * 2 + 0.2
+        } else {
+            currentView.alpha = 1 - coeficientPag + 0.2
+        }
+        
         configPageLabel()
     }
     
