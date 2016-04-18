@@ -38,7 +38,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tax-ur-MmU">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="159.5"/>
+                                                    <rect key="frame" x="0.0" y="-20" width="600" height="200"/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-cell-title" translatesAutoresizingMaskIntoConstraints="NO" id="nEz-38-jMX">
                                                     <rect key="frame" x="30" y="94" width="160" height="36"/>
@@ -59,8 +59,8 @@
                                                 <constraint firstItem="5zG-ll-QHD" firstAttribute="centerY" secondItem="nEz-38-jMX" secondAttribute="centerY" id="7HI-Z7-JVA"/>
                                                 <constraint firstItem="5zG-ll-QHD" firstAttribute="width" secondItem="nEz-38-jMX" secondAttribute="width" constant="-20" id="9sm-Wc-1af"/>
                                                 <constraint firstItem="5zG-ll-QHD" firstAttribute="centerX" secondItem="nEz-38-jMX" secondAttribute="centerX" id="D6S-rG-9FC"/>
-                                                <constraint firstAttribute="bottom" secondItem="Tax-ur-MmU" secondAttribute="bottom" id="PAN-LY-Mup"/>
-                                                <constraint firstItem="Tax-ur-MmU" firstAttribute="top" secondItem="DCv-89-fmJ" secondAttribute="top" id="Zo5-Je-ZPy"/>
+                                                <constraint firstAttribute="bottom" secondItem="Tax-ur-MmU" secondAttribute="bottom" constant="-20" id="PAN-LY-Mup"/>
+                                                <constraint firstItem="Tax-ur-MmU" firstAttribute="top" secondItem="DCv-89-fmJ" secondAttribute="top" constant="-20" id="Zo5-Je-ZPy"/>
                                                 <constraint firstAttribute="bottom" secondItem="nEz-38-jMX" secondAttribute="bottom" constant="30" id="fsT-uw-57D"/>
                                                 <constraint firstItem="5zG-ll-QHD" firstAttribute="height" secondItem="nEz-38-jMX" secondAttribute="height" id="hcK-kA-HQu"/>
                                                 <constraint firstItem="nEz-38-jMX" firstAttribute="leading" secondItem="DCv-89-fmJ" secondAttribute="leading" constant="30" id="k8n-fR-0Rw"/>

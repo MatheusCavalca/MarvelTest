@@ -21,6 +21,8 @@ class CoverViewController: UIViewController {
     var nLoadedImages: Int = 0
     var page: Int = 0
     
+    let imageTag = 100
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -66,9 +68,10 @@ class CoverViewController: UIViewController {
                 dispatch_sync(dispatch_get_main_queue(), { () -> Void in
                     let nibName = NibObjects.reuseIdentifierFor(.CoverView)
                     let nib = UINib(nibName: nibName, bundle: NSBundle.mainBundle())
-                    let view = nib.instantiateWithOwner(self, options: nil)[0] as! CoverView
+                    let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
                     
-                    view.coverImage.image = UIImage(data: dataUnw)
+                    let imageView = view.viewWithTag(self.imageTag) as! UIImageView
+                    imageView.image = UIImage(data: dataUnw)
                     self.coversScrollView.addSubview(view)
                     
                     var floatLoadedImages = CGFloat(self.nLoadedImages)

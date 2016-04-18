@@ -25,8 +25,15 @@ class MarvelGeneralTests: XCTestCase {
 
     // MARK: - API Requests & Data Objects initialization
     
+    /**
+     Verifiy if Marvel API is returning correct response for Characters request
+     
+     - Known bug: Sometimes Marvel API returns error `500` when fetching characters using offset and limit differents of 0.
+        When this test fails, we can reproduce this issue using the interactive documentation of Marvel API on the link below, with the same `limit` and `offset` parameters:
+            `http://developer.marvel.com/docs`
+     */
     func testCharacterAPIRequest() {
-        for i in 0 ..< 10 {
+        for i in 0 ..< 5 {
             let expectation = expectationWithDescription("Testing Characters loading for page: " + i.description)
             
             MarvelAPIManager.sharedInstance.getCharacters(i, success: { (operation, characters) in
@@ -40,6 +47,13 @@ class MarvelGeneralTests: XCTestCase {
         }
     }
     
+    /**
+     Verifiy if Marvel API is returning correct response for Characters request starting with
+     
+     - Known bug: Sometimes Marvel API returns error `500` when fetching characters using `offset` and `limit` differents of 0.
+     When this test fails, we can reproduce this issue using the interactive documentation of Marvel API on the link below, with the same `limit`, `offset` and `nameStartsWith` parameters:
+     `http://developer.marvel.com/docs`
+     */
     func testCharacterWithNameAPIRequest() {
         for i in 0 ..< 2 {
             let expectation = expectationWithDescription("Testing Characters loading for Captain America and for page: " + i.description)
@@ -48,7 +62,7 @@ class MarvelGeneralTests: XCTestCase {
                 XCTAssertTrue(characters.count == 12, "No more characters to load at page: " + i.description)
                 expectation.fulfill()
             }) { (operation, error) in
-                XCTFail("Load Captain America failed with error: " + error.description)
+                XCTFail("Load Characters failed with error:" + error.description)
             }
             
             waitForExpectationsWithTimeout(10.0, handler: { error in XCTAssertNil(error, "Expectation failed with error: " + (error?.description)!)})

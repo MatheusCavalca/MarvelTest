@@ -41,4 +41,18 @@ class CharacterMainTableViewCell: UITableViewCell {
         }
     }
     
+    // MARK: - Parallax effect
+    
+    func cellOnTableViewDidScroll(tableView: UITableView, viewPar: UIView) {
+        let rectInSuperview = tableView.convertRect(frame, toView: viewPar)
+        
+        let distanceFromCenter = CGRectGetHeight(viewPar.frame)/2 - CGRectGetMinY(rectInSuperview)
+        let difference = CGRectGetHeight(thumbnail.frame) -  CGRectGetHeight(self.frame)
+        let move = (distanceFromCenter/CGRectGetHeight(viewPar.frame)) * difference
+        
+        var imageRect = thumbnail.frame
+        imageRect.origin.y = -(difference/2) + move
+        thumbnail.frame = imageRect 
+    }
+    
 }

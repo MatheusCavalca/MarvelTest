@@ -15,7 +15,8 @@ class CharactersListViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     
-    var usePhotoFilter = true
+    let usePhotoFilter = true
+    let useParallax = false
     
     var characters = [Character]()  {
         didSet {
@@ -99,6 +100,7 @@ class CharactersListViewController: UIViewController {
                 indexPathes.append(NSIndexPath(forRow: i, inSection: 0))
             }
             self.tableView.insertRowsAtIndexPaths(indexPathes, withRowAnimation: .Automatic)
+            self.handleParallax()
             
             if charList.count == apiManager.defaultPageSize {
                 hasMoreCharacters = true
@@ -112,10 +114,10 @@ class CharactersListViewController: UIViewController {
     }
     
     func didRetrievedCharsError(charList: [Character]) {
+        isLoading = false
         if charactersToDisplay.count > 0 {
             loadMoreCharacters()
         }
-        isLoading = false
     }
     
     // MARK: - Endless Scrolling  Helpers
@@ -134,7 +136,7 @@ class CharactersListViewController: UIViewController {
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.stopLoadingOnFooterOfTableView(self.tableView)
             })
-        } else {
+        } else if !isLoading{
             isLoading = true
             loadCharacters()
         }
@@ -144,6 +146,17 @@ class CharactersListViewController: UIViewController {
     
     @IBAction func searchCharacter(sender: AnyObject) {
         performSegueWithIdentifier("segueSearchCharacter", sender: self)
+    }
+    
+    // MARK: - Parallax helper 
+    
+    func handleParallax() {
+        if useParallax {
+            let arrayCellsVisible = tableView.visibleCells
+            for cell in arrayCellsVisible {
+                (cell as! CharacterMainTableViewCell).cellOnTableViewDidScroll(tableView, viewPar: view)
+            }
+        }
     }
     
     // MARK: - Navigation
@@ -187,3 +200,10 @@ extension CharactersListViewController: UITableViewDelegate {
     }
 }
 
+extension CharactersListViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        self.handleParallax()
+    }
+    
+}

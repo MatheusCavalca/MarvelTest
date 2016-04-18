@@ -49,17 +49,36 @@ class MarvelTestUITests: XCTestCase {
         let tablesQuery = XCUIApplication().tables
         let app = XCUIApplication()
         
-        sleep(5)
+        sleep(3)
         XCTAssertTrue(app.tables.cells.count > 0, "Characters not loaded or timeout occured")
         
         let staticText = tablesQuery.staticTexts["3-D Man"]
         staticText.tap()
+        
+        sleep(1)
         tablesQuery.staticTexts["Detail"].tap()
         app.buttons["Done"].tap()
         tablesQuery.staticTexts["Wiki"].tap()
         app.buttons["Done"].tap()
         tablesQuery.staticTexts["Comiclink"].tap()
         app.buttons["Done"].tap()
+    }
+    
+    func testCharacterComicCover() {
+        let tablesQuery = XCUIApplication().tables
+        let app = XCUIApplication()
+        
+        sleep(3)
+        XCTAssertTrue(app.tables.cells.count > 0, "Characters not loaded or timeout occured")
+        
+        let staticText = tablesQuery.staticTexts["3-D Man"]
+        staticText.tap()
+        
+        sleep(3)
+        
+        tablesQuery.staticTexts["Avengers: The Initiative (2007) #19"].tap()
+        app.buttons["icn nav close white"].tap()
+        
     }
     
 }

@@ -103,6 +103,9 @@ class SearchCharacterViewController: UIViewController {
     
     func didRetrievedCharactersError(charList: [Character]) {
         isLoading = false
+        if characters.count > 0 {
+            loadMoreCharacters()
+        }
     }
 
     // MARK: - Endless Scrolling  Helpers
@@ -121,7 +124,7 @@ class SearchCharacterViewController: UIViewController {
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.stopLoadingOnFooterOfTableView(self.tableView)
             })
-        } else {
+        } else if !isLoading {
             isLoading = true
             if let searchText = searchField.text {
                 loadCharactersWithStartName(searchText)

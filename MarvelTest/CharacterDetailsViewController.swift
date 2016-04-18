@@ -9,6 +9,37 @@
 import UIKit
 import SafariServices
 
+enum CharacterDetailsRow: Int {
+    
+    case Name = 0,
+        Description,
+        Comics,
+        Series,
+        Stories,
+        Events,
+        RelatedLinks
+    
+    func relatedSectionTitle() -> String {
+        switch self {
+        case .Name:
+            return "NAME"
+        case .Description:
+            return "DESCRIPTION"
+        case .Comics:
+            return "COMICS"
+        case .Series:
+            return "SERIES"
+        case .Stories:
+            return "STORIES"
+        case .Events:
+            return "EVENTS"
+        case .RelatedLinks:
+            return "RELATED LINKS"
+        }
+    }
+
+}
+
 class CharacterDetailsViewController: UIViewController {
     
     // MARK: - Properties
@@ -32,7 +63,7 @@ class CharacterDetailsViewController: UIViewController {
     let labelTag = 100
     let heightForHeader: CGFloat = 40.0
     let nSections = 7
-    let headerTitles = ["NAME", "DESCRIPTION", "COMICS", "SERIES", "STORIES", "EVENTS", "RELATED LINKS"]
+    let headerTitles: [CharacterDetailsRow] = [.Name, .Description, .Comics, .Series, .Stories, .Events, .RelatedLinks]
     let nRowsInSection = [1, 1, 1, 1, 1, 1, 3]
     
     let relatedLinksTitles = ["Detail", "Wiki", "Comiclink"]
@@ -83,6 +114,8 @@ class CharacterDetailsViewController: UIViewController {
         }
     }
     
+    // MARK: - API Helpers
+
     func loadComics() {
         MarvelAPIManager.sharedInstance.getComicsWithCharacter(character.charId, success: { (operation, comics) in
             self.comics = comics
@@ -152,7 +185,7 @@ extension CharacterDetailsViewController: UITableViewDataSource {
         let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
         
         let labelTitle = view.viewWithTag(labelTag) as! UILabel
-        labelTitle.text = headerTitles[section]
+        labelTitle.text = headerTitles[section].relatedSectionTitle()
         
         return view
     }
@@ -161,7 +194,7 @@ extension CharacterDetailsViewController: UITableViewDataSource {
         let row = indexPath.row
         let section = indexPath.section
         switch section {
-        case 0:
+        case CharacterDetailsRow.Name.rawValue:
             let cellIdentifier = NibObjects.reuseIdentifierFor(.TextCell)
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
             
@@ -169,7 +202,8 @@ extension CharacterDetailsViewController: UITableViewDataSource {
             label.text = character.name
             
             return cell
-        case 1:
+            
+        case CharacterDetailsRow.Description.rawValue:
             let cellIdentifier = NibObjects.reuseIdentifierFor(.TextCell)
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
             
@@ -182,12 +216,17 @@ extension CharacterDetailsViewController: UITableViewDataSource {
             }
             
             return cell
-        case 2 where comics == nil, 3 where series == nil, 4 where stories == nil, 5 where events == nil:
+            
+        case CharacterDetailsRow.Comics.rawValue where comics == nil,
+        CharacterDetailsRow.Series.rawValue where series == nil,
+        CharacterDetailsRow.Stories.rawValue where stories == nil,
+        CharacterDetailsRow.Events.rawValue where events == nil:
             let cellIdentifier = NibObjects.reuseIdentifierFor(.LoadingCell)
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
             
             return cell
-        case 2 where comics.count > 0:
+            
+        case CharacterDetailsRow.Comics.rawValue where comics.count > 0:
             let cellIdentifier = NibObjects.reuseIdentifierFor(.ComicMainCell)
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AppearanceMainTableViewCell
             
@@ -195,7 +234,8 @@ extension CharacterDetailsViewController: UITableViewDataSource {
             cell.delegate = self
             
             return cell
-        case 3 where series.count > 0:
+            
+        case CharacterDetailsRow.Series.rawValue where series.count > 0:
             let cellIdentifier = NibObjects.reuseIdentifierFor(.ComicMainCell)
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AppearanceMainTableViewCell
             
@@ -203,7 +243,8 @@ extension CharacterDetailsViewController: UITableViewDataSource {
             cell.delegate = self
             
             return cell
-        case 4 where stories.count > 0:
+            
+        case CharacterDetailsRow.Stories.rawValue where stories.count > 0:
             let cellIdentifier = NibObjects.reuseIdentifierFor(.ComicMainCell)
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AppearanceMainTableViewCell
             
@@ -211,7 +252,8 @@ extension CharacterDetailsViewController: UITableViewDataSource {
             cell.delegate = self
             
             return cell
-        case 5 where events.count > 0:
+            
+        case CharacterDetailsRow.Events.rawValue where events.count > 0:
             let cellIdentifier = NibObjects.reuseIdentifierFor(.ComicMainCell)
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AppearanceMainTableViewCell
             
@@ -219,7 +261,8 @@ extension CharacterDetailsViewController: UITableViewDataSource {
             cell.delegate = self
             
             return cell
-        case 6:
+            
+        case CharacterDetailsRow.RelatedLinks.rawValue:
             let cellIdentifier = NibObjects.reuseIdentifierFor(.RelatedLinksCell)
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
             
@@ -227,6 +270,7 @@ extension CharacterDetailsViewController: UITableViewDataSource {
             label.text = relatedLinksTitles[row]
             
             return cell
+            
         default:
             let cellIdentifier = NibObjects.reuseIdentifierFor(.LoadingCell)
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)

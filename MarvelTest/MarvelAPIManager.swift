@@ -14,13 +14,25 @@ typealias ErrorHandler = (operation: AFHTTPRequestOperation!, error: NSError!) -
 
 class MarvelAPIManager {
     
-    let publicKey = "14555c551bd677c5aa887abcdfbe68b6"
-    let privateKey = "31b59cce5304fb3b1c81686dcfcf15bdf48b4841"
+    // MARK: - Properties
     
     let operationManager = AFHTTPRequestOperationManager()
     var isOperationManagerConfigured = false
     
     let defaultPageSize = 12
+    
+    
+    private lazy var publicKey: String = {
+        let path = NSBundle.mainBundle().pathForResource("MarvelAPIKeys", ofType: "plist")
+        let keys = NSDictionary(contentsOfFile: path!)
+        return keys!.objectForKey("PUBLIC_API_KEY") as! String
+    }()
+    
+    private lazy var privateKey: String = {
+        let path = NSBundle.mainBundle().pathForResource("MarvelAPIKeys", ofType: "plist")
+        let keys = NSDictionary(contentsOfFile: path!)
+        return keys!.objectForKey("PRIVATE_API_KEY") as! String
+    }()
     
     private lazy var getCharactersURL: String = {
         return self.urlForRequest(requestKey:"GET_CHARACTERS")
@@ -221,22 +233,6 @@ class MarvelAPIManager {
         let relativeURL = urls?.objectForKey(requestKey) as! String!
         
         return baseURL + relativeURL
-    }
-    
-    
-    private func includeParametersAndCustomHeadersIfNeeded() {
-        if !isOperationManagerConfigured {
-            let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
-            
-            operationManager.responseSerializer = AFJSONResponseSerializer()
-            operationManager.responseSerializer.acceptableContentTypes = NSSet(objects: "text/plain", "application/json") as Set<NSObject>
-            operationManager.requestSerializer = AFJSONRequestSerializer(writingOptions: NSJSONWritingOptions(rawValue: 0))
-            operationManager.requestSerializer.setValue("ios", forHTTPHeaderField: "X-Platform")
-            operationManager.requestSerializer.setValue(version, forHTTPHeaderField: "X-App-Version")
-            operationManager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Accept")
-            operationManager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            
-        }
     }
     
     func md5(string string: String) -> String {

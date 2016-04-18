@@ -12,6 +12,7 @@
 		381033EB1CC2B7B700AB0316 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 381033EA1CC2B7B700AB0316 /* Pods.framework */; };
 		381033EC1CC2B7CE00AB0316 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 381033EA1CC2B7B700AB0316 /* Pods.framework */; };
 		381044341CBD579E005473D1 /* SearchCharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381044331CBD579E005473D1 /* SearchCharacterViewController.swift */; };
+		3821B9D21CC5580B00B93C70 /* MarvelAPIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3821B9D11CC5580B00B93C70 /* MarvelAPIKeys.plist */; };
 		382F9A5E1CC0130300AD66AD /* CharacterDetailsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 382F9A5D1CC0130300AD66AD /* CharacterDetailsHeaderView.xib */; };
 		3838B2C71CBEA15C00269E97 /* AppearanceMainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3838B2C61CBEA15C00269E97 /* AppearanceMainCollectionViewCell.swift */; };
 		3838B2C91CBEA1F800269E97 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3838B2C81CBEA1F800269E97 /* Appearance.swift */; };
@@ -27,11 +28,8 @@
 		38A3A06E1CBD3CE600224AA9 /* NibObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3A06D1CBD3CE600224AA9 /* NibObjects.swift */; };
 		38D0E7AB1CBEE9EF009BF5C4 /* CoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D0E7AA1CBEE9EF009BF5C4 /* CoverViewController.swift */; };
 		38D0E7AE1CBEEAD7009BF5C4 /* CoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38D0E7AD1CBEEAD7009BF5C4 /* CoverView.xib */; };
-		38D0E7B01CBEEB03009BF5C4 /* CoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D0E7AF1CBEEB03009BF5C4 /* CoverView.swift */; };
 		38D0E7B41CBEEFD9009BF5C4 /* CoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D0E7AA1CBEE9EF009BF5C4 /* CoverViewController.swift */; };
 		38D0E7B51CBEEFD9009BF5C4 /* CoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D0E7AA1CBEE9EF009BF5C4 /* CoverViewController.swift */; };
-		38D0E7B61CBEF21F009BF5C4 /* CoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D0E7AF1CBEEB03009BF5C4 /* CoverView.swift */; };
-		38D0E7B71CBEF220009BF5C4 /* CoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D0E7AF1CBEEB03009BF5C4 /* CoverView.swift */; };
 		38D0E7B81CBEF224009BF5C4 /* CoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38D0E7AD1CBEEAD7009BF5C4 /* CoverView.xib */; };
 		38D0E7B91CBEF225009BF5C4 /* CoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38D0E7AD1CBEEAD7009BF5C4 /* CoverView.xib */; };
 		38E20D6D1CBD24340023AA4C /* bridging.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E20D6C1CBD24340023AA4C /* bridging.m */; };
@@ -87,6 +85,7 @@
 		381033E81CC295F800AB0316 /* MarvelGeneralTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarvelGeneralTests.swift; sourceTree = "<group>"; };
 		381033EA1CC2B7B700AB0316 /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "../../Library/Developer/Xcode/DerivedData/MarvelTest-dpwbhdwintsysgayhwxruchweetp/Build/Products/Debug-iphonesimulator/Pods.framework"; sourceTree = "<group>"; };
 		381044331CBD579E005473D1 /* SearchCharacterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCharacterViewController.swift; sourceTree = "<group>"; };
+		3821B9D11CC5580B00B93C70 /* MarvelAPIKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MarvelAPIKeys.plist; sourceTree = "<group>"; };
 		382F9A5D1CC0130300AD66AD /* CharacterDetailsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharacterDetailsHeaderView.xib; sourceTree = "<group>"; };
 		3838B2C61CBEA15C00269E97 /* AppearanceMainCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceMainCollectionViewCell.swift; sourceTree = "<group>"; };
 		3838B2C81CBEA1F800269E97 /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
@@ -108,7 +107,6 @@
 		38A3A06D1CBD3CE600224AA9 /* NibObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibObjects.swift; sourceTree = "<group>"; };
 		38D0E7AA1CBEE9EF009BF5C4 /* CoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoverViewController.swift; sourceTree = "<group>"; };
 		38D0E7AD1CBEEAD7009BF5C4 /* CoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoverView.xib; sourceTree = "<group>"; };
-		38D0E7AF1CBEEB03009BF5C4 /* CoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoverView.swift; sourceTree = "<group>"; };
 		38E20D691CBD24330023AA4C /* MarvelTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MarvelTest-Bridging-Header.h"; sourceTree = "<group>"; };
 		38E20D6A1CBD24330023AA4C /* MarvelTestTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MarvelTestTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		38E20D6B1CBD24330023AA4C /* MarvelTestUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MarvelTestUITests-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -253,7 +251,6 @@
 			isa = PBXGroup;
 			children = (
 				38D0E7AD1CBEEAD7009BF5C4 /* CoverView.xib */,
-				38D0E7AF1CBEEB03009BF5C4 /* CoverView.swift */,
 				382F9A5D1CC0130300AD66AD /* CharacterDetailsHeaderView.xib */,
 			);
 			name = Views;
@@ -304,6 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				38E20D761CBD251B0023AA4C /* URLs.plist */,
+				3821B9D11CC5580B00B93C70 /* MarvelAPIKeys.plist */,
 			);
 			name = MarvelAPIResources;
 			sourceTree = "<group>";
@@ -437,6 +435,7 @@
 				388A64881CBD23C8007E20DD /* Assets.xcassets in Resources */,
 				38E20D771CBD251B0023AA4C /* URLs.plist in Resources */,
 				38D0E7AE1CBEEAD7009BF5C4 /* CoverView.xib in Resources */,
+				3821B9D21CC5580B00B93C70 /* MarvelAPIKeys.plist in Resources */,
 				382F9A5E1CC0130300AD66AD /* CharacterDetailsHeaderView.xib in Resources */,
 				388A64861CBD23C8007E20DD /* Main.storyboard in Resources */,
 			);
@@ -525,7 +524,6 @@
 				38A3A0671CBD311700224AA9 /* Character.swift in Sources */,
 				388A64831CBD23C8007E20DD /* CharactersListViewController.swift in Sources */,
 				3838B2C91CBEA1F800269E97 /* Appearance.swift in Sources */,
-				38D0E7B01CBEEB03009BF5C4 /* CoverView.swift in Sources */,
 				388A64811CBD23C8007E20DD /* AppDelegate.swift in Sources */,
 				3862A7631CBDC670009BFEAA /* CharacterDetailsViewController.swift in Sources */,
 				38EFD01E1CBEABF400342A34 /* AppearanceMainTableViewCell.swift in Sources */,
@@ -546,7 +544,6 @@
 				38EFD00D1CBEAA9100342A34 /* Character.swift in Sources */,
 				38E20D731CBD24950023AA4C /* MarvelAPIManager.swift in Sources */,
 				38E20D6E1CBD24340023AA4C /* bridging.m in Sources */,
-				38D0E7B61CBEF21F009BF5C4 /* CoverView.swift in Sources */,
 				38EFD0111CBEAA9C00342A34 /* CharacterMainTableViewCell.swift in Sources */,
 				38EFD0171CBEAAA600342A34 /* SearchCharacterViewController.swift in Sources */,
 				38EFD01F1CBEADCF00342A34 /* AppearanceMainTableViewCell.swift in Sources */,
@@ -567,7 +564,6 @@
 				38EFD00E1CBEAA9100342A34 /* Character.swift in Sources */,
 				38E20D741CBD24950023AA4C /* MarvelAPIManager.swift in Sources */,
 				38E20D6F1CBD24340023AA4C /* bridging.m in Sources */,
-				38D0E7B71CBEF220009BF5C4 /* CoverView.swift in Sources */,
 				38EFD0121CBEAA9D00342A34 /* CharacterMainTableViewCell.swift in Sources */,
 				38EFD0181CBEAAA700342A34 /* SearchCharacterViewController.swift in Sources */,
 				38EFD0201CBEADD000342A34 /* AppearanceMainTableViewCell.swift in Sources */,
