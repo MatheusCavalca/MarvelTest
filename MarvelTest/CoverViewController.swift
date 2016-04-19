@@ -31,6 +31,8 @@ class CoverViewController: UIViewController {
     
     let imageTag = 100
     
+    let minAlpha: CGFloat = 0.2
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -96,7 +98,7 @@ class CoverViewController: UIViewController {
                     
                     if floatLoadedImages > 1 {
                         self.coversScrollView.scrollEnabled = true
-                        view.alpha = 0.2
+                        view.alpha = self.minAlpha
                     } else {
                         view.alpha = 1.0
                         self.coversScrollView.scrollEnabled = false
@@ -135,9 +137,9 @@ extension CoverViewController: UIScrollViewDelegate {
         let currentView = coverViews[page]
 
         if coeficientPag <= 0.5 {
-            currentView.alpha = coeficientPag * 2 + 0.2
+            currentView.alpha = coeficientPag * 2 + minAlpha
         } else {
-            currentView.alpha = 1 - coeficientPag + 0.2
+            currentView.alpha = 1 - coeficientPag + minAlpha
         }
         
         configPageLabel()
